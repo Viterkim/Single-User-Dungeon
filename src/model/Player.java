@@ -32,29 +32,28 @@ public class Player
         return name;
     }
 
-    public void setName(String name) 
-    {
-        this.name = name;
-    }
-
     public int getLevel() 
     {
         return level;
-    }
-
-    public void setLevel(int level) 
-    {
-        this.level = level;
     }
 
     public int getCurrentHp() 
     {
         return currentHp;
     }
-
-    public void setCurrentHp(int currentHp) 
+    
+    public void damagePlayer(int damage)
     {
-        this.currentHp = currentHp;
+        this.currentHp -= damage;
+    }
+    
+    public void healPlayer(int damage)
+    {
+        this.currentHp += damage;
+        if (currentHp > maxHp)
+        {
+            currentHp = maxHp;
+        }
     }
 
     public int getMaxHp() 
@@ -62,19 +61,9 @@ public class Player
         return maxHp;
     }
 
-    public void setMaxHp(int maxHp) 
-    {
-        this.maxHp = maxHp;
-    }
-
     public ArrayList<Item> getInventory() 
     {
         return inventory;
-    }
-
-    public void setInventory(ArrayList<Item> inventory) 
-    {
-        this.inventory = inventory;
     }
 
     public int getGold() 
@@ -82,9 +71,14 @@ public class Player
         return gold;
     }
 
-    public void setGold(int gold) 
+    public void increaseGold(int gold) 
     {
-        this.gold = gold;
+        this.gold += gold;
+    }
+    
+    public void decreaseGold(int gold) 
+    {
+        this.gold -= gold;
     }
     
     

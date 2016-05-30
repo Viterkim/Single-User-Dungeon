@@ -41,7 +41,7 @@ public class Monster
     {
         return damage;
     }
-
+    
     public void damageMonster(int damage) 
     {
         currentHp -= damage;

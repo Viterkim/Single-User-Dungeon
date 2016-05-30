@@ -2,6 +2,7 @@
 package control;
 
 import java.util.ArrayList;
+import model.Player;
 import model.Room;
 
 public class RoomController 
@@ -9,11 +10,13 @@ public class RoomController
     private ArrayList<Room> map;
     private ActionController ac;
     private Room currentRoom;
+    private Player player;
     
-    public RoomController()
+    public RoomController(Player player)
     {
         ac = new ActionController(this);
         map = new ArrayList<>();
+        this.player = player;
         generateMap();
     }
     
@@ -26,6 +29,11 @@ public class RoomController
         map.add(new Room(1,1));
         // Temp Start Room
         currentRoom = getRoom(0,0);
+    }
+    
+    public String getCurrentRoomDescription()
+    {
+        return currentRoom.generateDescription(player, this);
     }
     
     public Room getRoom(int x, int y)

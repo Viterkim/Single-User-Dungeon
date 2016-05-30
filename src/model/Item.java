@@ -13,6 +13,21 @@ public class Item
         this.description = description;
         this.goldValue = goldValue;
     }
+
+    public String getName() 
+    {
+        return name;
+    }
+
+    public String getDescription() 
+    {
+        return description;
+    }
+
+    public int getGoldValue() 
+    {
+        return goldValue;
+    }
     
-    
+
 }
