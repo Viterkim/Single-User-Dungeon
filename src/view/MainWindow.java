@@ -15,6 +15,17 @@ public class MainWindow extends javax.swing.JFrame
         setLocationRelativeTo(null);
     }
 
+    private void print(String s)
+    {
+        clearConsole();
+        jTextAreaMain.append(s);
+    }
+    
+    private void clearConsole()
+    {
+        jTextAreaMain.setText("");
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -33,6 +44,12 @@ public class MainWindow extends javax.swing.JFrame
         jTextAreaMain.setColumns(20);
         jTextAreaMain.setRows(5);
         jScrollPane1.setViewportView(jTextAreaMain);
+
+        jTextFieldInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldInputActionPerformed(evt);
+            }
+        });
 
         jButtonDoAction.setText("Bingo");
         jButtonDoAction.addActionListener(new java.awt.event.ActionListener() {
@@ -106,12 +123,17 @@ public class MainWindow extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonDoActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDoActionActionPerformed
-        JOptionPane.showMessageDialog(null, "Hejsa");
+        print(jTextFieldInput.getText());
     }//GEN-LAST:event_jButtonDoActionActionPerformed
-
+    
     private void jButtonInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInventoryActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonInventoryActionPerformed
+
+    private void jTextFieldInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldInputActionPerformed
+        // Calls the action button
+        jButtonDoActionActionPerformed(evt);
+    }//GEN-LAST:event_jTextFieldInputActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
