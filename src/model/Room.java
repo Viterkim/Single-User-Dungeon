@@ -10,6 +10,7 @@ public class Room
     ArrayList<RoomObject> objects;
     
     private int x, y;
+    private Monster monster;
 
     public Room(int x, int y) 
     {
@@ -33,6 +34,19 @@ public class Room
         objects.add(object);
     }
     
-    
+    public void addMonster(Monster monster)
+    {
+        if (this.monster == null) 
+        {
+            this.monster = monster; 
+        } else {
+            System.out.println("Error! Monster already exists in this room!");
+        }
+    }
+
+    public Monster getMonster() 
+    {
+        return monster;
+    }
     
 }
