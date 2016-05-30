@@ -38,7 +38,6 @@ public class Room
     public String generateDescription(Player p, RoomController rc)
     {
         String s = generateMonsterDescription(p);
-        
         if (s.equals(""))
         {
             s = generateItemDescription();
@@ -47,14 +46,13 @@ public class Room
         {
             s = generateGeneralDescription(rc);
         }
-        
         return s;
     }
     
     private String generateMonsterDescription(Player p)
     {
         String s = "";
-        updateMonster();
+        getMonster();
         if (monster != null && !fightShown)
         {
             s += "You encounter a " + monster.getDescription() + ". You take damage from the initial encounter with the monster. You can attack or retreat.";
@@ -141,7 +139,7 @@ public class Room
         }
     }
 
-    public Monster updateMonster() 
+    public Monster getMonster() 
     {
         if (monster != null && monster.getCurrentHp() <= 0)
         {

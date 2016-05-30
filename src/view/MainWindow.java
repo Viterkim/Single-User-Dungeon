@@ -22,7 +22,7 @@ public class MainWindow extends javax.swing.JFrame
         {
             clearConsole();
         }
-        jTextAreaMain.append(s);
+        jTextAreaMain.append(s + System.lineSeparator());
     }
     
     private void clearConsole()

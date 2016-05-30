@@ -56,8 +56,12 @@ public class ActionController
         Room north = rc.getNorth(current);
         if (north != null)
         {
-            rc.setCurrentRoom(north);
-            return "Sucessfully entered the northern room" + System.lineSeparator();
+            if (current.getMonster() == null || rc.getLastDirection() == RoomController.DIRECTION_NORTH) 
+            {
+                rc.setCurrentRoom(north);
+                return "Sucessfully entered the northern room" + System.lineSeparator();
+            }
+            return "A monster blocks your path from leaving the room to the north" + System.lineSeparator();
         }
         return "Fail";
     }
@@ -68,8 +72,12 @@ public class ActionController
         Room south = rc.getSouth(current);
         if (south != null)
         {
-            rc.setCurrentRoom(south);
-            return "Sucessfully entered the southern room" + System.lineSeparator();
+            if (current.getMonster() == null || rc.getLastDirection() == RoomController.DIRECTION_SOUTH) 
+            {
+                rc.setCurrentRoom(south);
+                return "Sucessfully entered the southern room" + System.lineSeparator();
+            }
+            return "A monster blocks your path from leaving the room to the south" + System.lineSeparator();
         }
         return "Fail";
     }
@@ -80,8 +88,12 @@ public class ActionController
         Room west = rc.getWest(current);
         if (west != null)
         {
-            rc.setCurrentRoom(west);
-            return "Sucessfully entered the western room" + System.lineSeparator();
+            if (current.getMonster() == null || rc.getLastDirection() == RoomController.DIRECTION_WEST) 
+            {
+                rc.setCurrentRoom(west);
+                return "Sucessfully entered the western room" + System.lineSeparator();
+            }
+            return "A monster blocks your path from leaving the room to the west" + System.lineSeparator();
         }
         return "Fail";
     }
@@ -92,8 +104,12 @@ public class ActionController
         Room east = rc.getEast(current);
         if (east != null)
         {
-            rc.setCurrentRoom(east);
-            return "Sucessfully entered the eastern room" + System.lineSeparator();
+            if (current.getMonster() == null || rc.getLastDirection() == RoomController.DIRECTION_EAST) 
+            {
+                rc.setCurrentRoom(east);
+                return "Sucessfully entered the eastern room" + System.lineSeparator();
+            }
+            return "A monster blocks your path from leaving the room to the east" + System.lineSeparator();
         }
         return "Fail";
     }

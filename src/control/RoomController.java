@@ -7,10 +7,18 @@ import model.Room;
 
 public class RoomController 
 {
+    
+    static final int DIRECTION_NORTH = 0;
+    static final int DIRECTION_SOUTH = 1;
+    static final int DIRECTION_EAST = 2;
+    static final int DIRECTION_WEST = 3;
+    
     private ArrayList<Room> map;
     private ActionController ac;
     private Room currentRoom;
     private Player player;
+    private int lastDirection;
+    
     
     public RoomController(Player player)
     {
@@ -60,22 +68,42 @@ public class RoomController
     
     public Room getNorth(Room currentRoom)
     {
-        return getRoom(currentRoom.getX(), currentRoom.getY()+1);
+        Room r = getRoom(currentRoom.getX(), currentRoom.getY()+1);
+        if (r != null) {
+            lastDirection = DIRECTION_NORTH;
+        }
+        return r;
     }
     
     public Room getEast(Room currentRoom)
     {
-        return getRoom(currentRoom.getX()+1, currentRoom.getY());
+        Room r = getRoom(currentRoom.getX()+1, currentRoom.getY());
+        if (r != null) {
+            lastDirection = DIRECTION_EAST;
+        }
+        return r;
     }
     
     public Room getWest(Room currentRoom)
     {
-        return getRoom(currentRoom.getX()-1, currentRoom.getY());
+        Room r = getRoom(currentRoom.getX()-1, currentRoom.getY());
+        if (r != null) {
+            lastDirection = DIRECTION_WEST;
+        }
+        return r;
     }
     
     public Room getSouth(Room currentRoom)
     {
-        return getRoom(currentRoom.getX(), currentRoom.getY()-1);
+        Room r = getRoom(currentRoom.getX(), currentRoom.getY()-1);
+        if (r != null) {
+            lastDirection = DIRECTION_SOUTH;
+        }
+        return r;
+    }
+
+    public int getLastDirection() {
+        return lastDirection;
     }
     
     public String processInput(String s)
