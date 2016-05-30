@@ -2,7 +2,6 @@
 package control;
 
 import java.util.ArrayList;
-import model.BaseAction;
 import model.Room;
 
 public class RoomController 

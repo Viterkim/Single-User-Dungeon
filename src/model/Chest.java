@@ -11,7 +11,7 @@ public class Chest extends RoomObject
     }
     
     @Override
-    public void interact() 
+    public void interact(Player p) 
     {
         
     }

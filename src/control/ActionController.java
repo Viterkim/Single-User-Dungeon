@@ -14,6 +14,9 @@ public class ActionController
     
     public String processInput(String s)
     {
+        // Used for the "use" command
+        String itemUsage = ((s.contains("use") && s.length() > 4) ? s.substring(4) : "");
+        s = s.replaceAll(" " + itemUsage, "");
         switch(s.toLowerCase())
         {
             case "north":
@@ -26,6 +29,22 @@ public class ActionController
                 return goEast();
             case "help":
                 return help();
+            case "attack":
+                return "Not Available";
+            case "pickup":
+                return "Not Available";
+            case "use":
+                return "Not Available";
+            case "load":
+                return "Not Available";
+            case "save":
+                return "Not Available";
+            case "quit":
+                System.exit(0);
+            case "delete":
+                return "Formatting C:// Drive...";
+            case "current":
+                return rc.getCurrentRoom().getDescription();
             default:
                 return "Unknown Command";
         }
@@ -81,6 +100,6 @@ public class ActionController
     
     public String help()
     {
-        return "Tro på det";
+        return "north, east, south, west... more info senere #tropådet";
     }
 }

@@ -13,7 +13,7 @@ public abstract class RoomObject
         this.description = description;
     }
     
-    public abstract void interact();
+    public abstract void interact(Player p);
 
     public String getName() 
     {

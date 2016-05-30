@@ -40,6 +40,8 @@ public class MainWindow extends javax.swing.JFrame
         jButtonDoAction = new javax.swing.JButton();
         jLabelTitle = new javax.swing.JLabel();
         jButtonInventory = new javax.swing.JButton();
+        jProgressBarHealth = new javax.swing.JProgressBar();
+        jLabel1 = new javax.swing.JLabel();
 
         jTableInventory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -70,6 +72,7 @@ public class MainWindow extends javax.swing.JFrame
 
         jTextAreaMain.setColumns(20);
         jTextAreaMain.setRows(5);
+        jTextAreaMain.setFocusable(false);
         jScrollPaneMain.setViewportView(jTextAreaMain);
 
         jTextFieldInput.addActionListener(new java.awt.event.ActionListener() {
@@ -95,23 +98,32 @@ public class MainWindow extends javax.swing.JFrame
             }
         });
 
+        jProgressBarHealth.setBackground(new java.awt.Color(0, 255, 0));
+        jProgressBarHealth.setForeground(new java.awt.Color(255, 0, 0));
+        jProgressBarHealth.setValue(50);
+        jProgressBarHealth.setStringPainted(true);
+
+        jLabel1.setText("HP:");
+
         javax.swing.GroupLayout jPanelMainLayout = new javax.swing.GroupLayout(jPanelMain);
         jPanelMain.setLayout(jPanelMainLayout);
         jPanelMainLayout.setHorizontalGroup(
             jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMainLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelMainLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPaneMain)
-                            .addComponent(jTextFieldInput)))
-                    .addGroup(jPanelMainLayout.createSequentialGroup()
-                        .addGap(392, 392, 392)
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jProgressBarHealth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(157, 157, 157)
                         .addComponent(jButtonDoAction, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(78, 78, 78)
                         .addComponent(jButtonInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 203, Short.MAX_VALUE)))
+                        .addGap(0, 220, Short.MAX_VALUE))
+                    .addComponent(jScrollPaneMain)
+                    .addComponent(jTextFieldInput))
                 .addContainerGap())
             .addGroup(jPanelMainLayout.createSequentialGroup()
                 .addGap(360, 360, 360)
@@ -128,9 +140,12 @@ public class MainWindow extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonDoAction)
-                    .addComponent(jButtonInventory))
+                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonDoAction)
+                        .addComponent(jButtonInventory))
+                    .addComponent(jProgressBarHealth, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -168,8 +183,10 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JButton jButtonDoAction;
     private javax.swing.JButton jButtonInventory;
     private javax.swing.JDialog jDialogInventory;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelTitle;
     private javax.swing.JPanel jPanelMain;
+    private javax.swing.JProgressBar jProgressBarHealth;
     private javax.swing.JScrollPane jScrollPaneInventory;
     private javax.swing.JScrollPane jScrollPaneMain;
     private javax.swing.JTable jTableInventory;

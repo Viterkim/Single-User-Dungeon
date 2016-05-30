@@ -10,6 +10,7 @@ public class Room
     ArrayList<RoomObject> objects;
     
     private int x, y;
+    private String description;
     private Monster monster;
 
     public Room(int x, int y) 
@@ -27,6 +28,11 @@ public class Room
     public int getY() 
     {
         return y;
+    }
+    
+    public String getDescription()
+    {
+        return description;
     }
     
     public void addObject(RoomObject object) 
