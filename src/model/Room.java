@@ -11,21 +11,25 @@ public class Room
     
     private int x, y;
 
-    public Room(int x, int y) {
+    public Room(int x, int y) 
+    {
         this.x = x;
         this.y = y;
         objects = new ArrayList<>();
     }
 
-    public int getX() {
+    public int getX() 
+    {
         return x;
     }
 
-    public int getY() {
+    public int getY() 
+    {
         return y;
     }
     
-    public void addObject(RoomObject object) {
+    public void addObject(RoomObject object) 
+    {
         objects.add(object);
     }
     
