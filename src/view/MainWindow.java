@@ -13,11 +13,15 @@ public class MainWindow extends javax.swing.JFrame
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
+        print(map.getCurrentRoomDescription(), true);
     }
     
-    private void print(String s)
+    private void print(String s, boolean append)
     {
-        clearConsole();
+        if (!append)
+        {
+            clearConsole();
+        }
         jTextAreaMain.append(s);
     }
     
@@ -41,7 +45,7 @@ public class MainWindow extends javax.swing.JFrame
         jLabelTitle = new javax.swing.JLabel();
         jButtonInventory = new javax.swing.JButton();
         jProgressBarHealth = new javax.swing.JProgressBar();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelHp = new javax.swing.JLabel();
 
         jTableInventory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -103,7 +107,7 @@ public class MainWindow extends javax.swing.JFrame
         jProgressBarHealth.setValue(50);
         jProgressBarHealth.setStringPainted(true);
 
-        jLabel1.setText("HP:");
+        jLabelHp.setText("HP:");
 
         javax.swing.GroupLayout jPanelMainLayout = new javax.swing.GroupLayout(jPanelMain);
         jPanelMain.setLayout(jPanelMainLayout);
@@ -114,7 +118,7 @@ public class MainWindow extends javax.swing.JFrame
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelMainLayout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(jLabel1)
+                        .addComponent(jLabelHp)
                         .addGap(18, 18, 18)
                         .addComponent(jProgressBarHealth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(157, 157, 157)
@@ -145,7 +149,7 @@ public class MainWindow extends javax.swing.JFrame
                         .addComponent(jButtonDoAction)
                         .addComponent(jButtonInventory))
                     .addComponent(jProgressBarHealth, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabelHp))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -165,8 +169,8 @@ public class MainWindow extends javax.swing.JFrame
 
     private void jButtonDoActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDoActionActionPerformed
         String s = jTextFieldInput.getText();
-        //print(map.processInput(s));
-        print(map.getCurrentRoomDescription());
+        print(map.processInput(s), false);
+        print(map.getCurrentRoomDescription(), true);
         jTextFieldInput.setText("");
     }//GEN-LAST:event_jButtonDoActionActionPerformed
     
@@ -184,7 +188,7 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JButton jButtonDoAction;
     private javax.swing.JButton jButtonInventory;
     private javax.swing.JDialog jDialogInventory;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelHp;
     private javax.swing.JLabel jLabelTitle;
     private javax.swing.JPanel jPanelMain;
     private javax.swing.JProgressBar jProgressBarHealth;

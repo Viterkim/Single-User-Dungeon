@@ -57,7 +57,7 @@ public class ActionController
         if (north != null)
         {
             rc.setCurrentRoom(north);
-            return "Sucessfully entered the northern room";
+            return "Sucessfully entered the northern room" + System.lineSeparator();
         }
         return "Fail";
     }
@@ -69,7 +69,7 @@ public class ActionController
         if (south != null)
         {
             rc.setCurrentRoom(south);
-            return "Sucessfully entered the southern room";
+            return "Sucessfully entered the southern room" + System.lineSeparator();
         }
         return "Fail";
     }
@@ -81,7 +81,7 @@ public class ActionController
         if (west != null)
         {
             rc.setCurrentRoom(west);
-            return "Sucessfully entered the western room";
+            return "Sucessfully entered the western room" + System.lineSeparator();
         }
         return "Fail";
     }
@@ -93,7 +93,7 @@ public class ActionController
         if (east != null)
         {
             rc.setCurrentRoom(east);
-            return "Sucessfully entered the eastern room";
+            return "Sucessfully entered the eastern room" + System.lineSeparator();
         }
         return "Fail";
     }

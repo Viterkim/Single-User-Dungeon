@@ -22,6 +22,7 @@ public class Room
         this.x = x;
         this.y = y;
         roomObjects = new ArrayList<>();
+        roomItems = new ArrayList<>();
     }
 
     public int getX() 
@@ -93,22 +94,26 @@ public class Room
         String s = "";
         Random rng = new Random();
         String flavorAr[] = {"You see a hallway leading", "You see a passage going", "A door is located to the", "A set of stairs is available to the", "There's a small path leading", "A hole in the wall is located", "There's a hole in the ground you can climb through"};
-        String flavorText = flavorAr[rng.nextInt(flavorAr.length)];
+        String flavorText = "";
         
         if (rc.getNorth(this) != null)
         {
+            flavorText = flavorAr[rng.nextInt(flavorAr.length)];
             s += flavorText + " north" + System.lineSeparator();
         }
         if (rc.getSouth(this) != null)
         {
+            flavorText = flavorAr[rng.nextInt(flavorAr.length)];
             s += flavorText + " south" + System.lineSeparator();
         }
         if (rc.getWest(this) != null)
         {
+            flavorText = flavorAr[rng.nextInt(flavorAr.length)];
             s += flavorText + " west" + System.lineSeparator();
         }
         if (rc.getEast(this) != null)
         {
+            flavorText = flavorAr[rng.nextInt(flavorAr.length)];
             s += flavorText + " east" + System.lineSeparator();
         }
         return s;
@@ -138,7 +143,7 @@ public class Room
 
     public Monster updateMonster() 
     {
-        if (monster.getCurrentHp() <= 0)
+        if (monster != null && monster.getCurrentHp() <= 0)
         {
             monster = null;
         }
