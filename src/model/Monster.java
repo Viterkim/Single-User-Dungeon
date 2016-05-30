@@ -16,7 +16,6 @@ public class Monster
         this.currentHp = currentHp;
         this.damage = damage;
     }
-
     
     public String getName() 
     {
@@ -38,11 +37,13 @@ public class Monster
         return currentHp;
     }
 
-    public int getDamage() {
+    public int getDamage() 
+    {
         return damage;
     }
 
-    public void damageMonster(int damage) {
+    public void damageMonster(int damage) 
+    {
         currentHp -= damage;
     }
     

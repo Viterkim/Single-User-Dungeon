@@ -1,30 +1,35 @@
 
-package model;
+package control;
 
 import java.util.ArrayList;
+import model.Room;
 
 
-public class Map 
+public class RoomController 
 {
-    private ArrayList<Room> rooms;
+    private ArrayList<Room> map;
+    private Room currentRoom;
     
-    public Map()
+    public RoomController()
     {
-        rooms = new ArrayList<>();
+        map = new ArrayList<>();
+        generateMap();
     }
     
     //Hardcode temp
     public void generateMap()
     {
-        rooms.add(new Room(0,0));
-        rooms.add(new Room(0,1));
-        rooms.add(new Room(1,0));
-        rooms.add(new Room(1,1));
+        map.add(new Room(0,0));
+        map.add(new Room(0,1));
+        map.add(new Room(1,0));
+        map.add(new Room(1,1));
+        // Temp Start Room
+        currentRoom = getRoom(0,0);
     }
     
     public Room getRoom(int x, int y)
     {
-        for (Room r: rooms)
+        for (Room r: map)
         {
             if (r.getX() == x && r.getY() == y)
             {
