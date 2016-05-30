@@ -2,16 +2,18 @@
 package control;
 
 import java.util.ArrayList;
+import model.BaseAction;
 import model.Room;
-
 
 public class RoomController 
 {
     private ArrayList<Room> map;
+    private ActionController ac;
     private Room currentRoom;
     
     public RoomController()
     {
+        ac = new ActionController(this);
         map = new ArrayList<>();
         generateMap();
     }
@@ -38,6 +40,16 @@ public class RoomController
         }
         return null;
     }
+
+    public Room getCurrentRoom() 
+    {
+        return currentRoom;
+    }
+
+    public void setCurrentRoom(Room currentRoom) 
+    {
+        this.currentRoom = currentRoom;
+    }
     
     public Room getNorth(Room currentRoom)
     {
@@ -57,5 +69,10 @@ public class RoomController
     public Room getSouth(Room currentRoom)
     {
         return getRoom(currentRoom.getX(), currentRoom.getY()-1);
+    }
+    
+    public String processInput(String s)
+    {
+        return ac.processInput(s);
     }
 }
