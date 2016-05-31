@@ -24,15 +24,25 @@ public class ActionController
         {
             case "north":
                 return goNorth();
+            case "up":
+                return goNorth();
             case "south":
+                return goSouth();
+            case "down":
                 return goSouth();
             case "west":
                 return goWest();
+            case "left":
+                return goWest();
             case "east":
+                return goEast();
+            case "right":
                 return goEast();
             case "help":
                 return help();
             case "attack":
+                return attack();
+            case "fight":
                 return attack();
             case "pickup":
                 return pickup();

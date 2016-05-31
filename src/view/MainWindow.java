@@ -13,6 +13,7 @@ public class MainWindow extends javax.swing.JFrame
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
+        print(map.getPlayer().getStory(), true);
         print(map.getCurrentRoomDescription(""), true);
         updateHP();
     }

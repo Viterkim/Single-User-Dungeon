@@ -2,6 +2,7 @@
 package model;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class Player 
 {
@@ -32,6 +33,15 @@ public class Player
         this.level++;
         this.maxHp += 10;
         this.currentHp = maxHp;
+    }
+    
+    public String getStory()
+    {
+        String tempName = JOptionPane.showInputDialog(null, "What is your name?");
+        this.name = tempName;
+        String story = "85 years ago in a small country called Norway. A small village had around 85 villagers and one of those were called " + name +
+                ".\nOne day while travelling to the market to buy some apples, he/she fell in a hole and suddenly they found themselves in this weird dungeon.\nGood luck";
+        return story;
     }
     
     public void increaseMaxHp(int amount)
