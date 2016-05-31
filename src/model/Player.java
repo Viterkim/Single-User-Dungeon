@@ -17,7 +17,7 @@ public class Player
         this.currentHp = maxHp;
         this.gold = 0;
         inventory = new ArrayList<>();
-        inventory.add(new Weapon("Short sword", "A short sword. (What did you expect?)", 50, 5));
+        inventory.add(new Weapon("Fists", "your own fists", 0, 5));
     }
     
     public void levelUp()

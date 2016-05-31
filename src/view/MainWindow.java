@@ -53,7 +53,6 @@ public class MainWindow extends javax.swing.JFrame
         jTextFieldInput = new javax.swing.JTextField();
         jButtonDoAction = new javax.swing.JButton();
         jLabelTitle = new javax.swing.JLabel();
-        jButtonInventory = new javax.swing.JButton();
         jProgressBarHealth = new javax.swing.JProgressBar();
         jLabelHp = new javax.swing.JLabel();
 
@@ -105,13 +104,6 @@ public class MainWindow extends javax.swing.JFrame
         jLabelTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabelTitle.setText("Eventyr Tid");
 
-        jButtonInventory.setText("Inventory");
-        jButtonInventory.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonInventoryActionPerformed(evt);
-            }
-        });
-
         jProgressBarHealth.setBackground(new java.awt.Color(255, 0, 0));
         jProgressBarHealth.setForeground(new java.awt.Color(0, 255, 0));
         jProgressBarHealth.setMaximum(30);
@@ -135,16 +127,14 @@ public class MainWindow extends javax.swing.JFrame
                         .addComponent(jProgressBarHealth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(157, 157, 157)
                         .addComponent(jButtonDoAction, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(78, 78, 78)
-                        .addComponent(jButtonInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 220, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPaneMain)
                     .addComponent(jTextFieldInput))
                 .addContainerGap())
             .addGroup(jPanelMainLayout.createSequentialGroup()
                 .addGap(360, 360, 360)
                 .addComponent(jLabelTitle)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(399, Short.MAX_VALUE))
         );
         jPanelMainLayout.setVerticalGroup(
             jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,9 +147,7 @@ public class MainWindow extends javax.swing.JFrame
                 .addComponent(jTextFieldInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonDoAction)
-                        .addComponent(jButtonInventory))
+                    .addComponent(jButtonDoAction)
                     .addComponent(jProgressBarHealth, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelHp))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -187,10 +175,6 @@ public class MainWindow extends javax.swing.JFrame
         updateHP();
     }//GEN-LAST:event_jButtonDoActionActionPerformed
     
-    private void jButtonInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInventoryActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonInventoryActionPerformed
-
     private void jTextFieldInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldInputActionPerformed
         // Calls the action button
         jButtonDoActionActionPerformed(evt);
@@ -199,7 +183,6 @@ public class MainWindow extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDoAction;
-    private javax.swing.JButton jButtonInventory;
     private javax.swing.JDialog jDialogInventory;
     private javax.swing.JLabel jLabelHp;
     private javax.swing.JLabel jLabelTitle;
