@@ -17,7 +17,14 @@ public class Player
         this.currentHp = maxHp;
         this.gold = 0;
         inventory = new ArrayList<>();
+        initInventory();
+    }
+    
+    private void initInventory() {
+        inventory.clear();
         inventory.add(new Weapon("Fists", "your own fists", 0, 5));
+        inventory.add(new Item("Potion", "", 50));
+        inventory.add(new Item("Potion", "", 50));
     }
     
     public void levelUp()

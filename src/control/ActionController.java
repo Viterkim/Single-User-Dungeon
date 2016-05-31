@@ -17,7 +17,7 @@ public class ActionController
     public String processInput(String s)
     {
         // Used for the "use" command
-        String itemUsage = ((s.contains("use") && s.length() > 4) ? s.substring(4) : "");
+        String itemUsage = ((s.contains("use") && s.length() > 4) ? s.substring(4) : "").toLowerCase();
         s = s.replaceAll(" " + itemUsage, "");
         switch(s.toLowerCase())
         {
@@ -36,7 +36,7 @@ public class ActionController
             case "pickup":
                 return pickup();
             case "use":
-                return "Not Available";
+                return use(itemUsage);
             case "load":
                 return "Not Available";
             case "save":
@@ -174,6 +174,9 @@ public class ActionController
     public String pickup() {
         String items = "";
         ArrayList<Item> list = (ArrayList<Item>) rc.getCurrentRoom().getRoomItems().clone();
+        if (list.size() <= 0) {
+            return "No items available to pick up!";
+        }
         for (Item i : list) {
             rc.getPlayer().addItem(i);
             rc.getCurrentRoom().removeItem(i);
@@ -181,6 +184,16 @@ public class ActionController
         }
         items = items.substring(0, items.length() - 1);
         return "You picked up " + items + " from the floor.";
+    }
+    
+    public String use(String itemName) {
+        ArrayList<Item> items = (ArrayList<Item>) rc.getPlayer().getInventory().clone();
+        for (Item i : items) {
+            if (i.getName().toLowerCase().equals(itemName)) {
+                return i.use(rc.getPlayer());
+            }
+        }
+        return "You don't have that item in your inventory.";
     }
 
 }
