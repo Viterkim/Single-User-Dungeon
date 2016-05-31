@@ -24,10 +24,10 @@ public class Item
                 this.description = "a magical shard, it will increase your weapon damage!";
                 break;
             case "shroom":
-                this.description = "you probably shouldn't eat this";
+                this.description = "dirty (you probably shouldn't eat this)";
                 break;
             case "armor":
-                this.description = "increases your HP by 20";
+                this.description = "able to increase your max HP by 20";
                 break;
         }
     }
