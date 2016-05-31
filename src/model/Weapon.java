@@ -13,12 +13,19 @@ public class Weapon extends Item {
     
     private int damage;
     
-    public Weapon(String name, String description, int goldValue, int damage) {
+    public Weapon(String name, String description, int goldValue, int damage) 
+    {
         super(name, description, goldValue);
         this.damage = damage;
     }
-
-    public int getDamage() {
+    
+    public void increaseDamage(int amount)
+    {
+        damage += amount;
+    }
+    
+    public int getDamage() 
+    {
         return damage;
     }
     
