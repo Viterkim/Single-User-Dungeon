@@ -14,6 +14,7 @@ public class MainWindow extends javax.swing.JFrame
         setVisible(true);
         setLocationRelativeTo(null);
         print(map.getCurrentRoomDescription(), true);
+        updateHP();
     }
     
     private void print(String s, boolean append)
@@ -28,6 +29,11 @@ public class MainWindow extends javax.swing.JFrame
     private void clearConsole()
     {
         jTextAreaMain.setText("");
+    }
+    
+    private void updateHP() {
+        jProgressBarHealth.setMaximum(map.getPlayer().getMaxHp());
+        jProgressBarHealth.setValue(map.getPlayer().getCurrentHp());
     }
     
     @SuppressWarnings("unchecked")
@@ -102,9 +108,10 @@ public class MainWindow extends javax.swing.JFrame
             }
         });
 
-        jProgressBarHealth.setBackground(new java.awt.Color(0, 255, 0));
-        jProgressBarHealth.setForeground(new java.awt.Color(255, 0, 0));
-        jProgressBarHealth.setValue(50);
+        jProgressBarHealth.setBackground(new java.awt.Color(255, 0, 0));
+        jProgressBarHealth.setForeground(new java.awt.Color(0, 255, 0));
+        jProgressBarHealth.setMaximum(30);
+        jProgressBarHealth.setToolTipText("");
         jProgressBarHealth.setStringPainted(true);
 
         jLabelHp.setText("HP:");
@@ -172,6 +179,7 @@ public class MainWindow extends javax.swing.JFrame
         print(map.processInput(s), false);
         print(map.getCurrentRoomDescription(), true);
         jTextFieldInput.setText("");
+        updateHP();
     }//GEN-LAST:event_jButtonDoActionActionPerformed
     
     private void jButtonInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInventoryActionPerformed

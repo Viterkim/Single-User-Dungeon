@@ -2,11 +2,15 @@
 package control;
 
 import java.util.ArrayList;
+import java.util.Random;
+import model.MonsterGenerator;
 import model.Player;
 import model.Room;
 
 public class RoomController 
 {
+    
+    static final String[] DIRECTIONS = {"North", "South", "East", "West"};
     
     static final int DIRECTION_NORTH = 0;
     static final int DIRECTION_SOUTH = 1;
@@ -18,14 +22,29 @@ public class RoomController
     private Room currentRoom;
     private Player player;
     private int lastDirection;
-    
+    private Random random;
     
     public RoomController(Player player)
     {
+        random = new Random();
         ac = new ActionController(this);
         map = new ArrayList<>();
         this.player = player;
-        generateMap();
+        //generateMap();
+        randomGenerateMap(3, 3, 30);
+    }
+    
+    public void randomGenerateMap(int width, int height, int monsterChance) {
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                Room r = new Room(x, y);
+                if (random.nextInt(100) <= monsterChance) {
+                    r.addMonster(MonsterGenerator.GenerateRandomMonster());
+                }
+                map.add(r);
+            }
+        }
+        currentRoom = getRoom(0, 0);
     }
     
     //Hardcode temp
@@ -38,9 +57,16 @@ public class RoomController
         // Temp Start Room
         currentRoom = getRoom(0,0);
     }
+
+    public Player getPlayer() {
+        return player;
+    }
     
     public String getCurrentRoomDescription()
     {
+        if (player == null) {
+            System.out.println("Error, player == null");
+        }
         return currentRoom.generateDescription(player, this);
     }
     
@@ -69,41 +95,34 @@ public class RoomController
     public Room getNorth(Room currentRoom)
     {
         Room r = getRoom(currentRoom.getX(), currentRoom.getY()+1);
-        if (r != null) {
-            lastDirection = DIRECTION_NORTH;
-        }
         return r;
     }
     
     public Room getEast(Room currentRoom)
     {
         Room r = getRoom(currentRoom.getX()+1, currentRoom.getY());
-        if (r != null) {
-            lastDirection = DIRECTION_EAST;
-        }
         return r;
     }
     
     public Room getWest(Room currentRoom)
     {
         Room r = getRoom(currentRoom.getX()-1, currentRoom.getY());
-        if (r != null) {
-            lastDirection = DIRECTION_WEST;
-        }
         return r;
     }
     
     public Room getSouth(Room currentRoom)
     {
         Room r = getRoom(currentRoom.getX(), currentRoom.getY()-1);
-        if (r != null) {
-            lastDirection = DIRECTION_SOUTH;
-        }
         return r;
     }
 
     public int getLastDirection() {
         return lastDirection;
+    }
+    
+    public void setLastDirection(int dir) {
+        System.out.println("Setting last direction to " + DIRECTIONS[dir]);
+        lastDirection = dir;
     }
     
     public String processInput(String s)

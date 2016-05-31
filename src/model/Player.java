@@ -17,7 +17,7 @@ public class Player
         this.currentHp = maxHp;
         this.gold = 0;
         inventory = new ArrayList<>();
-        
+        inventory.add(new Weapon("Short sword", "A short sword. (What did you expect?)", 50, 5));
     }
     
     public void levelUp()
@@ -81,7 +81,20 @@ public class Player
         this.gold -= gold;
     }
     
+    public void addItem(Item item) {
+        inventory.add(item);
+    }
     
-    
+    public Weapon getBestWeapon() {
+        Weapon bestWeapon = null;
+        for (Item i : inventory) {
+            if (i instanceof Weapon) {
+                if (bestWeapon == null || bestWeapon.getDamage() < ((Weapon) i).getDamage()) {
+                    bestWeapon = (Weapon) i;
+                }
+            }
+        }
+        return bestWeapon;
+    }
     
 }

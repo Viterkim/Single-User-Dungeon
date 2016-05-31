@@ -15,10 +15,12 @@ public class Room
     private int x, y;
     private String description;
     private Monster monster;
-    boolean fightShown;
-
+    private boolean fightShown;
+    private Random random;
+    
     public Room(int x, int y) 
     {
+        random = new Random();
         this.x = x;
         this.y = y;
         roomObjects = new ArrayList<>();
@@ -55,7 +57,12 @@ public class Room
         getMonster();
         if (monster != null && !fightShown)
         {
-            s += "You encounter a " + monster.getDescription() + ". You take damage from the initial encounter with the monster. You can attack or retreat.";
+            if (random.nextBoolean()) {
+                s += "You encounter a " + monster.getDescription() + ". You take " + monster.getDamage() + " from the initial encounter with the monster. You can attack or retreat.";
+                p.damagePlayer(monster.getDamage());
+            } else {
+                s += "You encounter a " + monster.getDescription() + ". You take no damage from the initial encounter with the monster. You can attack or retreat.";
+            }
             fightShown = true;
         }
         else if (monster != null && fightShown)
