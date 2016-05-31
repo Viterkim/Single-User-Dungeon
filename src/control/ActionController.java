@@ -188,20 +188,25 @@ public class ActionController
         return "You picked up " + items + " from the floor.";
     }
     
-    public String use(String itemName) {
+    public String use(String itemName) 
+    {
         ArrayList<Item> items = (ArrayList<Item>) rc.getPlayer().getInventory().clone();
-        for (Item i : items) {
-            if (i.getName().toLowerCase().equals(itemName)) {
+        for (Item i : items) 
+        {
+            if (i.getName().toLowerCase().equals(itemName)) 
+            {
                 return i.use(rc.getPlayer());
             }
         }
         return "You don't have that item in your inventory.";
     }
     
-    public String inventory() {
+    public String inventory() 
+    {
         String s = "Your inventory contains:" + System.lineSeparator();
-        for (Item i : rc.getPlayer().getInventory()) {
-            s += "- " + i.getName() + System.lineSeparator();
+        for (Item i : rc.getPlayer().getInventory()) 
+        {
+            s += "- " + i.getName() + " | " + i.getDescription() + System.lineSeparator();
         }
         return s;
     }

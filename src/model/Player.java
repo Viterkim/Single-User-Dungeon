@@ -33,7 +33,12 @@ public class Player
         this.maxHp += 10;
         this.currentHp = maxHp;
     }
-
+    
+    public void increaseMaxHp(int amount)
+    {
+        this.maxHp += amount;
+    }
+    
     public String getName() 
     {
         return name;
@@ -63,6 +68,18 @@ public class Player
         }
     }
 
+    public void removeFromInventory(String name)
+    {
+        for (Item i : inventory)
+        {
+            if (i.getName().equalsIgnoreCase(name))
+            {
+                inventory.remove(i);
+                return;
+            }
+        }
+    }
+    
     public int getMaxHp() 
     {
         return maxHp;
@@ -88,7 +105,8 @@ public class Player
         this.gold -= gold;
     }
     
-    public void addItem(Item item) {
+    public void addItem(Item item) 
+    {
         inventory.add(item);
     }
     

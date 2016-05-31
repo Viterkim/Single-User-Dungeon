@@ -12,6 +12,24 @@ public class Item
         this.name = name;
         this.description = description;
         this.goldValue = goldValue;
+        switch (name.toLowerCase())
+        {
+            case "gold coins":
+                this.description = "lovely money!";
+                break;
+            case "potion":
+                this.description = "a potion that heals you to full health!";
+                break;
+            case "weapon shard":
+                this.description = "a magical shard, it will increase your weapon damage!";
+                break;
+            case "shroom":
+                this.description = "you probably shouldn't eat this";
+                break;
+            case "armor":
+                this.description = "increases your HP by 20";
+                break;
+        }
     }
     
     public String getName() 
@@ -35,13 +53,20 @@ public class Item
         {
             case "potion":
                 p.healPlayer(p.getMaxHp());
-                return "Used " + name + " your healt has returned to max!" + System.lineSeparator();
+                p.removeFromInventory(name);
+                return "Used " + name + " your health has returned to max!" + System.lineSeparator();
             case "weapon shard":
                 p.getBestWeapon().increaseDamage(10);
+                p.removeFromInventory(name);
                 return "Used " + name + " your current sword's damage has increased by 10!" + System.lineSeparator();
             case "shroom":
                 p.damagePlayer(20);
+                p.removeFromInventory(name);
                 return "Used " + name + "you lose 20 health! (What are you doing???)" + System.lineSeparator();
+            case "armor":
+                p.increaseMaxHp(20);
+                p.removeFromInventory(name);
+                return "Used " + name + " max health increased by 20!" + System.lineSeparator();
             default:
                 return "You can't use this item!";
         }
