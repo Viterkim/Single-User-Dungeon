@@ -37,6 +37,8 @@ public class ActionController
                 return pickup();
             case "use":
                 return use(itemUsage);
+            case "inventory":
+                return inventory();
             case "load":
                 return "Not Available";
             case "save":
@@ -194,6 +196,14 @@ public class ActionController
             }
         }
         return "You don't have that item in your inventory.";
+    }
+    
+    public String inventory() {
+        String s = "Your inventory contains:" + System.lineSeparator();
+        for (Item i : rc.getPlayer().getInventory()) {
+            s += "- " + i.getName() + System.lineSeparator();
+        }
+        return s;
     }
 
 }
