@@ -49,6 +49,7 @@ public class RoomController
             }
         }
         currentRoom = getRoom(0, 0);
+        currentRoom.getMonster().damageMonster(999);
     }
     
     //Hardcode temp
@@ -66,12 +67,12 @@ public class RoomController
         return player;
     }
     
-    public String getCurrentRoomDescription()
+    public String getCurrentRoomDescription(String command)
     {
         if (player == null) {
             System.out.println("Error, player == null");
         }
-        return currentRoom.generateDescription(player, this);
+        return currentRoom.generateDescription(player, this, command);
     }
     
     public Room getRoom(int x, int y)

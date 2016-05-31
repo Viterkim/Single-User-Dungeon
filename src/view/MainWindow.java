@@ -13,7 +13,7 @@ public class MainWindow extends javax.swing.JFrame
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
-        print(map.getCurrentRoomDescription(), true);
+        print(map.getCurrentRoomDescription(""), true);
         updateHP();
     }
     
@@ -170,7 +170,7 @@ public class MainWindow extends javax.swing.JFrame
     private void jButtonDoActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDoActionActionPerformed
         String s = jTextFieldInput.getText();
         print(map.processInput(s), false);
-        print(map.getCurrentRoomDescription(), true);
+        print(map.getCurrentRoomDescription(s), true);
         jTextFieldInput.setText("");
         updateHP();
     }//GEN-LAST:event_jButtonDoActionActionPerformed

@@ -40,8 +40,11 @@ public class Room
         return y;
     }
     
-    public String generateDescription(Player p, RoomController rc)
+    public String generateDescription(Player p, RoomController rc, String command)
     {
+        if (command.equalsIgnoreCase("help") || command.equalsIgnoreCase("inventory")) {
+            return generateGeneralDescription(rc);
+        }
         String s = generateMonsterDescription(p);
         if (s.equals(""))
         {
