@@ -184,6 +184,7 @@
             </Property>
             <Property name="maximum" type="int" value="30"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
+            <Property name="string" type="java.lang.String" value="0"/>
             <Property name="stringPainted" type="boolean" value="true"/>
           </Properties>
         </Component>

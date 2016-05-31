@@ -1,6 +1,7 @@
 
 package control;
 
+import java.util.Random;
 import model.*;
 
 public class ActionController 
@@ -135,14 +136,33 @@ public class ActionController
         return "north, east, south, west... more info senere #tropådet";
     }
     
-    public String attack() {
+    public String attack() 
+    {
+        if (rc.getCurrentRoom().getMonster() == null)
+        {
+            return "There's no monster in the room!";
+        }
         Player p = rc.getPlayer();
         Weapon w = p.getBestWeapon();
         Monster m = rc.getCurrentRoom().getMonster();
         m.damageMonster(w.getDamage());
-        if (m.getCurrentHp() > 0) {
+        if (m.getCurrentHp() > 0) 
+        {
+            Random rng = new Random();
+            int dropChance = 45;
+            if (rng.nextInt(100) <= dropChance)
+            {
+                int weaponDropChance = 20;
+                if (rng.nextInt(100) < weaponDropChance)
+                {
+                    rc.getCurrentRoom().addItem(WeaponGenerator.GenerateRandomWeapon());
+                }
+                else
+                {
+                    rc.getCurrentRoom().addItem(ItemGenerator.GenerateRandomItem());
+                }
+            }
             
-            //Item drop = new Item(name, description, 0);
             return "You dealt " + w.getDamage() + " damage to the " + m.getDescription();
         }
         return "You killed the " + m.getDescription();

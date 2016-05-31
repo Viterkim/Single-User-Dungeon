@@ -11,14 +11,16 @@ import java.util.Random;
  *
  * @author CHRIS
  */
-public class MonsterGenerator {
+public class MonsterGenerator 
+{
  
     private static String[] NAMES = {"Frank"};
-    private static String[] DESCRIPTIONS = {"Blob of goo"};
+    private static String[] DESCRIPTIONS = {"blob of goo"};
     private static int[] HPS = {10};
     private static int[] DAMAGES = {5};
     
-    public static Monster GenerateRandomMonster() {
+    public static Monster GenerateRandomMonster() 
+    {
         Random random = new Random();
         String name = NAMES[random.nextInt(NAMES.length)];
         String description = DESCRIPTIONS[random.nextInt(DESCRIPTIONS.length)];

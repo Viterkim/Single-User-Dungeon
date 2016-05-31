@@ -17,10 +17,13 @@ public class Room
     private Monster monster;
     private boolean fightShown;
     private Random random;
+    private String[] directionDescription;
     
     public Room(int x, int y) 
     {
         random = new Random();
+        directionDescription = new String[4];
+        fillDirectionalDescriptions();
         this.x = x;
         this.y = y;
         roomObjects = new ArrayList<>();
@@ -43,10 +46,7 @@ public class Room
         if (s.equals(""))
         {
             s = generateItemDescription();
-        }
-        if (s.equals(""))
-        {
-            s = generateGeneralDescription(rc);
+            s += generateGeneralDescription(rc);
         }
         return s;
     }
@@ -57,11 +57,14 @@ public class Room
         getMonster();
         if (monster != null && !fightShown)
         {
-            if (random.nextBoolean()) {
-                s += "You encounter a " + monster.getDescription() + ". You take " + monster.getDamage() + " from the initial encounter with the monster. You can attack or retreat.";
+            if (random.nextBoolean()) 
+            {
+                s += "You encounter " + monster.getName() + " which is a " + monster.getDescription() + ". You take " + monster.getDamage() + " from the initial encounter with the monster. You can attack or retreat.";
                 p.damagePlayer(monster.getDamage());
-            } else {
-                s += "You encounter a " + monster.getDescription() + ". You take no damage from the initial encounter with the monster. You can attack or retreat.";
+            } 
+            else 
+            {
+                s += "You encounter " + monster.getName() + " which is a " + monster.getDescription() + ". You take no damage from the initial encounter with the monster. You can attack or retreat.";
             }
             fightShown = true;
         }
@@ -81,45 +84,47 @@ public class Room
         {
             for (RoomObject o : roomObjects)
             {
-                s += "There's a " + o.getDescription() + " in the room." + System.lineSeparator();
+                s += "There's a " + o.getName() + " in the room. Which is " + o.getDescription() + "." + System.lineSeparator();
             }
         }
         if (!roomItems.isEmpty())
         {
             for (Item i : roomItems)
             {
-                s += "There's a " + i.getDescription() + " on the floor." + System.lineSeparator();
+                s += "There's a " + i.getName() + " on the floor. Which is "+ i.getDescription() + "." + System.lineSeparator();
             }
         }
         return s;
     }
     
+    private void fillDirectionalDescriptions()
+    {
+        String flavorAr[] = {"You see a hallway leading", "You see a passage going", "A door is located to the", "A set of stairs is available to the", "There's a small path leading", "A hole in the wall is located", "There's a hole in the ground you can climb through"};
+        Random rng = new Random();
+        for (int i = 0; i < 4; i++) 
+        {
+            directionDescription[i] = flavorAr[rng.nextInt(flavorAr.length)];
+        }
+    }
+    
     private String generateGeneralDescription(RoomController rc)
     {
         String s = "";
-        Random rng = new Random();
-        String flavorAr[] = {"You see a hallway leading", "You see a passage going", "A door is located to the", "A set of stairs is available to the", "There's a small path leading", "A hole in the wall is located", "There's a hole in the ground you can climb through"};
-        String flavorText = "";
-        
         if (rc.getNorth(this) != null)
         {
-            flavorText = flavorAr[rng.nextInt(flavorAr.length)];
-            s += flavorText + " north" + System.lineSeparator();
+            s += directionDescription[RoomController.DIRECTION_NORTH] + " north" + System.lineSeparator();
         }
         if (rc.getSouth(this) != null)
         {
-            flavorText = flavorAr[rng.nextInt(flavorAr.length)];
-            s += flavorText + " south" + System.lineSeparator();
+            s += directionDescription[RoomController.DIRECTION_SOUTH] + " south" + System.lineSeparator();
         }
         if (rc.getWest(this) != null)
         {
-            flavorText = flavorAr[rng.nextInt(flavorAr.length)];
-            s += flavorText + " west" + System.lineSeparator();
+            s += directionDescription[RoomController.DIRECTION_WEST] + " west" + System.lineSeparator();
         }
         if (rc.getEast(this) != null)
         {
-            flavorText = flavorAr[rng.nextInt(flavorAr.length)];
-            s += flavorText + " east" + System.lineSeparator();
+            s += directionDescription[RoomController.DIRECTION_EAST] + " east" + System.lineSeparator();
         }
         return s;
     }
@@ -132,6 +137,11 @@ public class Room
     public void addObject(RoomObject object) 
     {
         roomObjects.add(object);
+    }
+    
+    public void addItem(Item item) 
+    {
+        roomItems.add(item);
     }
     
     public void addMonster(Monster monster)

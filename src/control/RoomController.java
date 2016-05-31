@@ -12,10 +12,10 @@ public class RoomController
     
     static final String[] DIRECTIONS = {"North", "South", "East", "West"};
     
-    static final int DIRECTION_NORTH = 0;
-    static final int DIRECTION_SOUTH = 1;
-    static final int DIRECTION_EAST = 2;
-    static final int DIRECTION_WEST = 3;
+    public static final int DIRECTION_NORTH = 0;
+    public static final int DIRECTION_SOUTH = 1;
+    public static final int DIRECTION_EAST = 2;
+    public static final int DIRECTION_WEST = 3;
     
     private ArrayList<Room> map;
     private ActionController ac;
@@ -34,11 +34,15 @@ public class RoomController
         randomGenerateMap(3, 3, 30);
     }
     
-    public void randomGenerateMap(int width, int height, int monsterChance) {
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
+    public void randomGenerateMap(int width, int height, int monsterChance) 
+    {
+        for (int x = 0; x < width; x++) 
+        {
+            for (int y = 0; y < height; y++) 
+            {
                 Room r = new Room(x, y);
-                if (random.nextInt(100) <= monsterChance) {
+                if (random.nextInt(100) <= monsterChance) 
+                {
                     r.addMonster(MonsterGenerator.GenerateRandomMonster());
                 }
                 map.add(r);

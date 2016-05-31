@@ -31,9 +31,13 @@ public class MainWindow extends javax.swing.JFrame
         jTextAreaMain.setText("");
     }
     
-    private void updateHP() {
-        jProgressBarHealth.setMaximum(map.getPlayer().getMaxHp());
-        jProgressBarHealth.setValue(map.getPlayer().getCurrentHp());
+    private void updateHP() 
+    {
+        int maxHp = map.getPlayer().getMaxHp();
+        int currentHp = map.getPlayer().getCurrentHp();
+        jProgressBarHealth.setMaximum(maxHp);
+        jProgressBarHealth.setString(currentHp + "/" + maxHp);
+        jProgressBarHealth.setValue(currentHp);
     }
     
     @SuppressWarnings("unchecked")
@@ -112,6 +116,7 @@ public class MainWindow extends javax.swing.JFrame
         jProgressBarHealth.setForeground(new java.awt.Color(0, 255, 0));
         jProgressBarHealth.setMaximum(30);
         jProgressBarHealth.setToolTipText("");
+        jProgressBarHealth.setString("0");
         jProgressBarHealth.setStringPainted(true);
 
         jLabelHp.setText("HP:");
