@@ -9,6 +9,6 @@ public class MainClass
 {
     public static void main(String[] args) 
     {
-        new MainWindow(new RoomController(new Player("Temp Name")));
+        new MainWindow(new RoomController(new Player()));
     }
 }

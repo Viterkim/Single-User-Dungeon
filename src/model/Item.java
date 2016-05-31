@@ -60,9 +60,14 @@ public class Item
                 p.removeFromInventory(name);
                 return "Used " + name + " your current sword's damage has increased by 10!" + System.lineSeparator();
             case "shroom":
-                p.damagePlayer(20);
+                int shroomDmg = p.getCurrentHp() - 5;
+                if (shroomDmg < 5)
+                {
+                    shroomDmg = 5;
+                }
+                p.damagePlayer(shroomDmg);
                 p.removeFromInventory(name);
-                return "Used " + name + "you lose 20 health! (What are you doing???)" + System.lineSeparator();
+                return "Used " + name + "you lose " + shroomDmg + " health! (What are you doing???)" + System.lineSeparator();
             case "armor":
                 p.increaseMaxHp(20);
                 p.removeFromInventory(name);

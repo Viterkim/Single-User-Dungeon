@@ -56,6 +56,10 @@ public class ActionController
                 return "Not Available";
             case "quit":
                 System.exit(0);
+            case "interact":
+                return "Not Available";
+            case "story":
+                return rc.getPlayer().getStory();
             case "delete":
                 return "Formatting C:// Drive...";
             case "current":
@@ -147,7 +151,22 @@ public class ActionController
     
     public String help()
     {
-        return "north, east, south, west... more info senere #tropådet";
+        return "north/up    |   travels in the given direction" + System.lineSeparator()
+                + "east/right   |   travels in the given direction," + System.lineSeparator()
+                + "south/down   |   travels in the given direction," + System.lineSeparator()
+                + "west/left    |   travels in the given direction" + System.lineSeparator()
+                + "retreat  |    retreats back to the room you were in beforehand" + System.lineSeparator()
+                + "attack/fight |   uses a turn on giving damage to the monster" + System.lineSeparator()
+                + "pickup   | picks up all items on the floor" + System.lineSeparator()
+                + "interact + xxx   |   interacts with an object in the room (ex: \"interact chest\")" + System.lineSeparator()
+                + "current  |   gives current information about the room you are in" + System.lineSeparator()
+                + "load/save    |   loads or saves the game" + System.lineSeparator()
+                + "inventory    |  displays your inventory" + System.lineSeparator()
+                + "delete   | give it a shot..." + System.lineSeparator()
+                + "use + xxx    |   uses an item from your inventory (ex: \"use potion\")" + System.lineSeparator()
+                + "story    |   depicts the tale of our epic hero as a figurative tsunami" + System.lineSeparator()
+                + "quit |   quits the game";
+                
     }
     
     public String attack() 

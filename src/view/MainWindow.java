@@ -15,7 +15,7 @@ public class MainWindow extends javax.swing.JFrame
         setLocationRelativeTo(null);
         print(map.getPlayer().getStory(), true);
         print(map.getCurrentRoomDescription(""), true);
-        updateHP();
+        update();
     }
     
     private void print(String s, boolean append)
@@ -32,10 +32,11 @@ public class MainWindow extends javax.swing.JFrame
         jTextAreaMain.setText("");
     }
     
-    private void updateHP() 
+    private void update() 
     {
         int maxHp = map.getPlayer().getMaxHp();
         int currentHp = map.getPlayer().getCurrentHp();
+        jLabelCurrentGold.setText("" + map.getPlayer().getGold());
         jProgressBarHealth.setMaximum(maxHp);
         jProgressBarHealth.setString(currentHp + "/" + maxHp);
         jProgressBarHealth.setValue(currentHp);
@@ -56,6 +57,8 @@ public class MainWindow extends javax.swing.JFrame
         jLabelTitle = new javax.swing.JLabel();
         jProgressBarHealth = new javax.swing.JProgressBar();
         jLabelHp = new javax.swing.JLabel();
+        jLabelGold = new javax.swing.JLabel();
+        jLabelCurrentGold = new javax.swing.JLabel();
 
         jTableInventory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -82,7 +85,7 @@ public class MainWindow extends javax.swing.JFrame
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Cirkus Dungeon Simulator");
+        setTitle("Eventyr Simulator 2017");
 
         jTextAreaMain.setColumns(20);
         jTextAreaMain.setRows(5);
@@ -103,7 +106,7 @@ public class MainWindow extends javax.swing.JFrame
         });
 
         jLabelTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabelTitle.setText("Eventyr Tid");
+        jLabelTitle.setText("Eventyr Simulator 2017");
 
         jProgressBarHealth.setBackground(new java.awt.Color(255, 0, 0));
         jProgressBarHealth.setForeground(new java.awt.Color(0, 255, 0));
@@ -114,6 +117,12 @@ public class MainWindow extends javax.swing.JFrame
 
         jLabelHp.setText("HP:");
 
+        jLabelGold.setText("Gold:");
+
+        jLabelCurrentGold.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabelCurrentGold.setForeground(new java.awt.Color(153, 153, 0));
+        jLabelCurrentGold.setText("85");
+
         javax.swing.GroupLayout jPanelMainLayout = new javax.swing.GroupLayout(jPanelMain);
         jPanelMain.setLayout(jPanelMainLayout);
         jPanelMainLayout.setHorizontalGroup(
@@ -122,35 +131,42 @@ public class MainWindow extends javax.swing.JFrame
                 .addContainerGap()
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelMainLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
+                        .addGap(13, 13, 13)
                         .addComponent(jLabelHp)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jProgressBarHealth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(157, 157, 157)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelGold)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelCurrentGold)
+                        .addGap(118, 118, 118)
                         .addComponent(jButtonDoAction, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 404, Short.MAX_VALUE))
                     .addComponent(jScrollPaneMain)
                     .addComponent(jTextFieldInput))
                 .addContainerGap())
-            .addGroup(jPanelMainLayout.createSequentialGroup()
-                .addGap(360, 360, 360)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelTitle)
-                .addContainerGap(399, Short.MAX_VALUE))
+                .addGap(305, 305, 305))
         );
         jPanelMainLayout.setVerticalGroup(
             jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMainLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addComponent(jLabelTitle)
-                .addGap(17, 17, 17)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPaneMain, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonDoAction)
-                    .addComponent(jProgressBarHealth, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelHp))
+                    .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jProgressBarHealth, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelGold)
+                        .addComponent(jLabelHp)
+                        .addComponent(jLabelCurrentGold)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -175,7 +191,7 @@ public class MainWindow extends javax.swing.JFrame
             print(map.getCurrentRoomDescription(s), true);
         }
         jTextFieldInput.setText("");
-        updateHP();
+        update();
     }//GEN-LAST:event_jButtonDoActionActionPerformed
     
     private void jTextFieldInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldInputActionPerformed
@@ -187,6 +203,8 @@ public class MainWindow extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDoAction;
     private javax.swing.JDialog jDialogInventory;
+    private javax.swing.JLabel jLabelCurrentGold;
+    private javax.swing.JLabel jLabelGold;
     private javax.swing.JLabel jLabelHp;
     private javax.swing.JLabel jLabelTitle;
     private javax.swing.JPanel jPanelMain;

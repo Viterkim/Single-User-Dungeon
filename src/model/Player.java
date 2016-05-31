@@ -10,13 +10,13 @@ public class Player
     private int level, currentHp, maxHp, gold;
     private ArrayList<Item> inventory;
     
-    public Player(String name)
+    public Player()
     {
-        this.name = name;
+        setNewName();
         this.level = 1;
         this.maxHp = 30;
         this.currentHp = maxHp;
-        this.gold = 0;
+        this.gold = 20;
         inventory = new ArrayList<>();
         initInventory();
     }
@@ -35,7 +35,7 @@ public class Player
         this.currentHp = maxHp;
     }
     
-    public String getStory()
+    public void setNewName()
     {
         String tempName = JOptionPane.showInputDialog(null, "What is your name?");
         if (tempName.equals(""))
@@ -43,8 +43,12 @@ public class Player
             tempName = "Player";
         }
         this.name = tempName;
-        String story = "85 years ago in a small country called Norway. A small village had around 85 villagers and one of those were called " + name +
-                ".\nOne day while travelling to the market to buy some apples, he/she fell in a hole and suddenly they found themselves in this weird dungeon.\nGood luck";
+    }
+    
+    public String getStory()
+    {
+        String story = "85 years ago in a small country called Russia. A small village had around 85 villagers and one of those were called " + name +
+                ".\nOne day while travelling to the market to buy some apples, " + name + " fell into a hole and suddenly they found themselves in this weird dungeon.\nGood luck";
         return story;
     }
     
@@ -124,10 +128,13 @@ public class Player
         inventory.add(item);
     }
     
-    public Weapon getBestWeapon() {
+    public Weapon getBestWeapon() 
+    {
         Weapon bestWeapon = null;
-        for (Item i : inventory) {
-            if (i instanceof Weapon) {
+        for (Item i : inventory) 
+        {
+            if (i instanceof Weapon) 
+            {
                 if (bestWeapon == null || bestWeapon.getDamage() < ((Weapon) i).getDamage()) {
                     bestWeapon = (Weapon) i;
                 }
