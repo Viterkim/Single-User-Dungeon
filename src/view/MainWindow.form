@@ -89,9 +89,7 @@
                           <Component id="jProgressBarHealth" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
                           <Component id="jButtonDoAction" min="-2" pref="106" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
-                          <Component id="jButtonInventory" min="-2" pref="106" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="220" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Component id="jScrollPaneMain" max="32767" attributes="0"/>
                       <Component id="jTextFieldInput" max="32767" attributes="0"/>
@@ -101,7 +99,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="360" max="-2" attributes="0"/>
                   <Component id="jLabelTitle" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="399" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -116,10 +114,7 @@
                   <Component id="jTextFieldInput" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButtonDoAction" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonInventory" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jButtonDoAction" min="-2" max="-2" attributes="0"/>
                       <Component id="jProgressBarHealth" min="-2" pref="23" max="-2" attributes="0"/>
                       <Component id="jLabelHp" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -165,14 +160,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Eventyr Tid"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButtonInventory">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Inventory"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonInventoryActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JProgressBar" name="jProgressBarHealth">
           <Properties>
