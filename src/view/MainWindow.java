@@ -170,7 +170,9 @@ public class MainWindow extends javax.swing.JFrame
     private void jButtonDoActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDoActionActionPerformed
         String s = jTextFieldInput.getText();
         print(map.processInput(s), false);
-        print(map.getCurrentRoomDescription(s), true);
+        if (!s.equalsIgnoreCase("current")) {
+            print(map.getCurrentRoomDescription(s), true);
+        }
         jTextFieldInput.setText("");
         updateHP();
     }//GEN-LAST:event_jButtonDoActionActionPerformed

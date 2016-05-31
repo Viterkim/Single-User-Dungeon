@@ -17,6 +17,7 @@ public class ActionController
     public String processInput(String s)
     {
         // Used for the "use" command
+        s = s.toLowerCase();
         String itemUsage = ((s.contains("use") && s.length() > 4) ? s.substring(4) : "").toLowerCase();
         s = s.replaceAll(" " + itemUsage, "");
         switch(s.toLowerCase())
@@ -48,7 +49,7 @@ public class ActionController
             case "delete":
                 return "Formatting C:// Drive...";
             case "current":
-                return rc.getCurrentRoom().getDescription();
+                return rc.getCurrentRoom().generateDescription(rc.getPlayer(), rc, s);
             case "retreat":
                 switch (rc.getLastDirection()) {
                     case RoomController.DIRECTION_NORTH:
@@ -198,7 +199,7 @@ public class ActionController
                 return i.use(rc.getPlayer());
             }
         }
-        return "You don't have that item in your inventory.";
+        return "You don't have the item \"" + itemName + "\" in your inventory.";
     }
     
     public String inventory() 

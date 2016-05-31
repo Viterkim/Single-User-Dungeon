@@ -13,7 +13,6 @@ public class Room
     ArrayList<Item> roomItems;
     
     private int x, y;
-    private String description;
     private Monster monster;
     private boolean fightShown;
     private Random random;
@@ -43,9 +42,9 @@ public class Room
     public String generateDescription(Player p, RoomController rc, String command)
     {
         if (command.equalsIgnoreCase("help") || command.equalsIgnoreCase("inventory")) {
-            return generateGeneralDescription(rc);
+            return "";
         }
-        String s = generateMonsterDescription(p);
+        String s = generateMonsterDescription(p, command);
         if (s.equals(""))
         {
             s = generateItemDescription();
@@ -54,7 +53,7 @@ public class Room
         return s;
     }
     
-    private String generateMonsterDescription(Player p)
+    private String generateMonsterDescription(Player p, String command)
     {
         String s = "";
         getMonster();
@@ -73,10 +72,12 @@ public class Room
         }
         else if (monster != null && fightShown)
         {
+            if (command.equalsIgnoreCase("current")) {
+                return "You find yourself in a room with " + monster.getName() + " which is a " + monster.getDescription();
+            }
             s += "The monster deals " + monster.getDamage() + " damage to you.";
             p.damagePlayer(monster.getDamage());
         }
-        
         return s;
     }
     
@@ -130,11 +131,6 @@ public class Room
             s += directionDescription[RoomController.DIRECTION_EAST] + " east" + System.lineSeparator();
         }
         return s;
-    }
-    
-    public String getDescription()
-    {
-        return description;
     }
     
     public void addObject(RoomObject object) 

@@ -49,7 +49,9 @@ public class RoomController
             }
         }
         currentRoom = getRoom(0, 0);
-        currentRoom.getMonster().damageMonster(999);
+        if (currentRoom.getMonster() != null) {
+            currentRoom.getMonster().damageMonster(999);
+        }
     }
     
     //Hardcode temp
