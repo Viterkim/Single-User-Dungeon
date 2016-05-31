@@ -2,7 +2,7 @@
 package model;
 
 
-public abstract class RoomObject 
+public class RoomObject 
 {
     private String name;
     private String description;
@@ -13,8 +13,21 @@ public abstract class RoomObject
         this.description = description;
     }
     
-    public abstract void interact(Player p);
-
+    public String interact(Player p)
+    {
+        switch(name.toLowerCase())
+        {
+            case "endgame chest":
+                p.doEndSequence();
+                return "You win the game! Congratulations! PLAYER STAT WIP KOMMER HER";
+            case "lamp":
+                return "You feel the mighty power of the magic lamp! You receive a buff of greater strength!";
+            default:
+                return "There is no object to interact with";
+                    
+        }
+    }
+    
     public String getName() 
     {
         return name;

@@ -21,7 +21,8 @@ public class Player
         initInventory();
     }
     
-    private void initInventory() {
+    private void initInventory() 
+    {
         inventory.clear();
         inventory.add(new Weapon("Fists", "your own fists", 0, 5));
         inventory.add(new Item("Potion", "", 50));
@@ -33,6 +34,12 @@ public class Player
         this.level++;
         this.maxHp += 10;
         this.currentHp = maxHp;
+    }
+    
+    public void doEndSequence()
+    {
+        JOptionPane.showMessageDialog(null, "Ez win game best game eu");
+        System.exit(0);
     }
     
     public void setNewName()
@@ -142,5 +149,4 @@ public class Player
         }
         return bestWeapon;
     }
-    
 }

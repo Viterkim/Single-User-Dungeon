@@ -86,6 +86,7 @@ public class MainWindow extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Eventyr Simulator 2017");
+        setResizable(false);
 
         jTextAreaMain.setColumns(20);
         jTextAreaMain.setRows(5);

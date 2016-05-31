@@ -18,8 +18,18 @@ public class ActionController
     {
         // Used for the "use" command
         s = s.toLowerCase();
-        String itemUsage = ((s.contains("use") && s.length() > 4) ? s.substring(4) : "").toLowerCase();
-        s = s.replaceAll(" " + itemUsage, "");
+        String itemUsage = ((s.contains("use") && s.length() > "use".length()+1) ? s.substring("use".length()+1) : "").toLowerCase();
+        String objectUsage = ((s.contains("interact") && s.length() > "interact".length()+1) ? s.substring("interact".length()+1) : "").toLowerCase();
+        System.out.println(objectUsage.toString());
+        if (!itemUsage.equalsIgnoreCase(""))
+        {
+            s = s.replaceAll(" " + itemUsage, "");
+        }
+        else if(!objectUsage.equalsIgnoreCase(""))
+        {
+            s = s.replaceAll(" " + objectUsage, "");
+        }
+        System.out.println(s);
         switch(s.toLowerCase())
         {
             case "north":
@@ -57,7 +67,7 @@ public class ActionController
             case "quit":
                 System.exit(0);
             case "interact":
-                return "Not Available";
+                return interact(objectUsage);
             case "story":
                 return rc.getPlayer().getStory();
             case "delete":
@@ -229,6 +239,19 @@ public class ActionController
             }
         }
         return "You don't have the item \"" + itemName + "\" in your inventory.";
+    }
+    
+    public String interact(String objectName) 
+    {
+        ArrayList<RoomObject> objects = rc.getCurrentRoom().getRoomObjects();
+        for (RoomObject o : objects) 
+        {
+            if (o.getName().equalsIgnoreCase(objectName)) 
+            {
+                return o.interact(rc.getPlayer());
+            }
+        }
+        return "This object does not exist!";
     }
     
     public String inventory() 

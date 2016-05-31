@@ -6,6 +6,8 @@ import java.util.Random;
 import model.MonsterGenerator;
 import model.Player;
 import model.Room;
+import model.RoomObject;
+import model.RoomObjectGenerator;
 
 public class RoomController 
 {
@@ -22,6 +24,7 @@ public class RoomController
     private Room currentRoom;
     private Player player;
     private int lastDirection;
+    private int dungeonHeight, dungeonWidth;
     private Random random;
     
     public RoomController(Player player)
@@ -30,11 +33,13 @@ public class RoomController
         ac = new ActionController(this);
         map = new ArrayList<>();
         this.player = player;
-        //generateMap();
-        randomGenerateMap(3, 3, 30);
+        //hardGenerateMap();
+        dungeonHeight = 3;
+        dungeonWidth = 3;
+        randomGenerateMap(dungeonWidth, dungeonHeight, 30, 5);
     }
     
-    public void randomGenerateMap(int width, int height, int monsterChance) 
+    public void randomGenerateMap(int width, int height, int monsterChance, int objectChance) 
     {
         for (int x = 0; x < width; x++) 
         {
@@ -45,17 +50,33 @@ public class RoomController
                 {
                     r.addMonster(MonsterGenerator.GenerateRandomMonster());
                 }
+                if (random.nextInt(100) < objectChance)
+                {
+                    RoomObject tempObj = RoomObjectGenerator.GenerateRandomObject();
+                    if (tempObj != null)
+                    {
+                        r.addObject(tempObj);
+                    }
+                }
                 map.add(r);
             }
         }
         currentRoom = getRoom(0, 0);
-        if (currentRoom.getMonster() != null) {
+        if (currentRoom.getMonster() != null) 
+        {
             currentRoom.getMonster().damageMonster(999);
         }
+        placeMandatoryObjects();
+    }
+
+    public void placeMandatoryObjects()
+    {
+        Random rng = new Random();
+        Room tempRoom = getRoom(rng.nextInt(dungeonWidth - 1) +1, rng.nextInt(dungeonHeight - 1) +1);
+        tempRoom.addObject(new RoomObject("Endgame Chest", "overflowing with coolness!"));
     }
     
-    //Hardcode temp
-    public void generateMap()
+    public void hardGenerateMap()
     {
         map.add(new Room(0,0));
         map.add(new Room(0,1));
@@ -71,9 +92,6 @@ public class RoomController
     
     public String getCurrentRoomDescription(String command)
     {
-        if (player == null) {
-            System.out.println("Error, player == null");
-        }
         return currentRoom.generateDescription(player, this, command);
     }
     
@@ -123,12 +141,13 @@ public class RoomController
         return r;
     }
 
-    public int getLastDirection() {
+    public int getLastDirection() 
+    {
         return lastDirection;
     }
     
-    public void setLastDirection(int dir) {
-        System.out.println("Setting last direction to " + DIRECTIONS[dir]);
+    public void setLastDirection(int dir) 
+    {
         lastDirection = dir;
     }
     

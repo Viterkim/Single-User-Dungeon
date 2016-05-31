@@ -164,15 +164,18 @@ public class Room
         return monster;
     }
 
-    public ArrayList<RoomObject> getRoomObjects() {
+    public ArrayList<RoomObject> getRoomObjects() 
+    {
         return roomObjects;
     }
 
-    public ArrayList<Item> getRoomItems() {
+    public ArrayList<Item> getRoomItems() 
+    {
         return roomItems;
     }
     
-    public void removeItem(Item i) {
+    public void removeItem(Item i) 
+    {
         roomItems.remove(i);
     }
     
