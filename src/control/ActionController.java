@@ -1,6 +1,7 @@
 
 package control;
 
+import java.util.ArrayList;
 import java.util.Random;
 import model.*;
 
@@ -33,7 +34,7 @@ public class ActionController
             case "attack":
                 return attack();
             case "pickup":
-                return "Not Available";
+                return pickup();
             case "use":
                 return "Not Available";
             case "load":
@@ -149,7 +150,7 @@ public class ActionController
         if (m.getCurrentHp() > 0) 
         {
             Random rng = new Random();
-            int dropChance = 45;
+            int dropChance = 100;
             if (rng.nextInt(100) <= dropChance)
             {
                 int weaponDropChance = 20;
@@ -169,4 +170,17 @@ public class ActionController
         }
         return "You killed the " + m.getDescription();
     }
+    
+    public String pickup() {
+        String items = "";
+        ArrayList<Item> list = (ArrayList<Item>) rc.getCurrentRoom().getRoomItems().clone();
+        for (Item i : list) {
+            rc.getPlayer().addItem(i);
+            rc.getCurrentRoom().removeItem(i);
+            items += i.getName() + ", ";
+        }
+        items = items.substring(0, items.length() - 1);
+        return "You picked up " + items + " from the floor.";
+    }
+
 }
