@@ -141,7 +141,6 @@ public class ActionController
         Monster m = rc.getCurrentRoom().getMonster();
         m.damageMonster(w.getDamage());
         if (m.getCurrentHp() > 0) {
-            
             //Item drop = new Item(name, description, 0);
             return "You dealt " + w.getDamage() + " damage to the " + m.getDescription();
         }
