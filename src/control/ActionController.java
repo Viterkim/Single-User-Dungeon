@@ -162,10 +162,11 @@ public class ActionController
                     rc.getCurrentRoom().addItem(ItemGenerator.GenerateRandomItem());
                 }
             }
-            
-            return "You dealt " + w.getDamage() + " damage to the " + m.getDescription();
+            if (m.getCurrentHp() > 0) 
+            {
+                return "You dealt " + w.getDamage() + " damage to the " + m.getDescription();
+            }
         }
         return "You killed the " + m.getDescription();
     }
-    
 }
