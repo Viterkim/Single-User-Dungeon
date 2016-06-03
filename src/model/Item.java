@@ -54,11 +54,11 @@ public class Item
             case "potion":
                 p.healPlayer(p.getMaxHp());
                 p.removeFromInventory(name);
-                return "Used " + name + " your health has returned to max!" + System.lineSeparator();
+                return "You used the " + name + " and your health has returned to max!" + System.lineSeparator();
             case "weapon shard":
                 p.getBestWeapon().increaseDamage(10);
                 p.removeFromInventory(name);
-                return "Used " + name + " your current sword's damage has increased by 10!" + System.lineSeparator();
+                return "You used the " + name + " and your " + p.getBestWeapon().getName() + "'s damage has increased by 10!" + System.lineSeparator();
             case "shroom":
                 int shroomDmg = p.getCurrentHp() - 5;
                 if (shroomDmg < 5)
@@ -67,11 +67,12 @@ public class Item
                 }
                 p.damagePlayer(shroomDmg);
                 p.removeFromInventory(name);
-                return "Used " + name + "you lose " + shroomDmg + " health! (What are you doing???)" + System.lineSeparator();
+                return "You used the " + name + " and lose " + shroomDmg + " health! (What are you doing???)" + System.lineSeparator();
             case "armor":
                 p.increaseMaxHp(20);
+                p.healPlayer(20);
                 p.removeFromInventory(name);
-                return "Used " + name + " max health increased by 20!" + System.lineSeparator();
+                return "You equipped the " + name + " and max health increased by 20!" + System.lineSeparator();
             default:
                 return "You can't use this item!";
         }

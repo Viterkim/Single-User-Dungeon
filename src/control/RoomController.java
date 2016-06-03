@@ -23,7 +23,7 @@ public class RoomController
     private ActionController ac;
     private Room currentRoom;
     private Player player;
-    private int lastDirection;
+    private int lastDirection = -1;
     private int dungeonHeight, dungeonWidth;
     private Random random;
     

@@ -18,4 +18,5 @@ public class ItemGenerator
         int value = VALUE[random.nextInt(VALUE.length)];
         return new Item(name, description, value);
     }
+    
 }
