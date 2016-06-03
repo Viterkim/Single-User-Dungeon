@@ -139,6 +139,18 @@ public class Room
         return s;
     }
     
+    public boolean hasObject(String s)
+    {
+        for (RoomObject o : roomObjects)
+        {
+            if (o.getName().equalsIgnoreCase(s))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public void addObject(RoomObject object) 
     {
         roomObjects.add(object);

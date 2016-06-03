@@ -58,10 +58,34 @@ public class Player
                         System.lineSeparator() + 
                         "One day while travelling to the market to buy some apples, " + name + " fell into a hole and suddenly found themselves in a weird dungeon." + 
                         System.lineSeparator() +
-                        "On the ground, a few feet away from the fall location, " + name + " sees 2 flasks with a red liquid in them. " + name + " quickly picks them up, and looks around the room." +
+                        "On the ground, a few feet away from the fall location, " + name + " sees 2 flasks with a red liquid in them.\n" + name + " quickly picks them up, and looks around the room." +
                         System.lineSeparator();
                         //"Your story starts here. Good luck." + System.lineSeparator();
         return story;
+    }
+    
+    public boolean hasItem(String s)
+    {
+        for (Item i : inventory)
+        {
+            if (i.getName().equalsIgnoreCase(s))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public Item getItem(String s)
+    {
+        for (Item i : inventory)
+        {
+            if (i.getName().equalsIgnoreCase(s))
+            {
+                return i;
+            }
+        }
+        return null;
     }
     
     public void increaseMaxHp(int amount)

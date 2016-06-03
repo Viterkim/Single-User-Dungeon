@@ -29,6 +29,8 @@ public class Item
             case "armor":
                 this.description = "able to increase your max HP by 20";
                 break;
+            case "master key":
+                this.description = "mysterious";
         }
     }
     
@@ -73,6 +75,8 @@ public class Item
                 p.healPlayer(20);
                 p.removeFromInventory(name);
                 return "You equipped the " + name + " and max health increased by 20!" + System.lineSeparator();
+            case "master key":
+                return "You can't use this right now! Maybe it will open a chest?";
             default:
                 return "You can't use this item!";
         }

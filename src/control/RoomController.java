@@ -1,9 +1,11 @@
 
 package control;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JTextArea;
+import model.Item;
 import model.MonsterGenerator;
 import model.Player;
 import model.Room;
@@ -11,7 +13,7 @@ import model.RoomObject;
 import model.RoomObjectGenerator;
 import view.MainWindow;
 
-public class RoomController 
+public class RoomController
 {
     
     static final String[] DIRECTIONS = {"North", "South", "East", "West"};
@@ -75,6 +77,7 @@ public class RoomController
             currentRoom.getMonster().damageMonster(999);
         }
         placeMandatoryObjects();
+        placeMandatoryItems();
     }
 
     public void placeMandatoryObjects()
@@ -82,6 +85,18 @@ public class RoomController
         Random rng = new Random();
         Room tempRoom = getRoom(rng.nextInt(dungeonWidth - 1) +1, rng.nextInt(dungeonHeight - 1) +1);
         tempRoom.addObject(new RoomObject("Endgame Chest", "overflowing with coolness!"));
+    }
+    
+    public void placeMandatoryItems()
+    {
+        Random rng = new Random();
+        Room tempRoom = getRoom(rng.nextInt(dungeonWidth - 1) +1, rng.nextInt(dungeonHeight - 1) +1);
+        if (tempRoom.hasObject("endgame chest"))
+        {
+            placeMandatoryItems();
+            return;
+        }
+        tempRoom.addItem(new Item("Master Key", "", -1));
     }
     
     public void hardGenerateMap()

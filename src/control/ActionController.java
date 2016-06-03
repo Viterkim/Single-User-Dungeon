@@ -20,11 +20,13 @@ public class ActionController
         s = s.toLowerCase();
         String itemUsage = ((s.contains("use") && s.length() > "use".length() + 1) ? s.substring("use".length()+1) : "").toLowerCase();
         String objectUsage = "";
-        if (s.contains("interact") && s.length() > "interact".length() + 1) {
+        if (s.contains("interact") && s.length() > "interact".length() + 1) 
+        {
             objectUsage = s.substring("interact".length()+1).toLowerCase();
             System.out.println("objectUsage: " + objectUsage);
         }
-        if (s.contains("open") && s.length() > "open".length() + 1) {
+        if (s.contains("open") && s.length() > "open".length() + 1) 
+        {
             objectUsage = s.substring("open".length() + 1).toLowerCase();
             System.out.println("objectUsage: " + objectUsage);
         }
@@ -83,7 +85,8 @@ public class ActionController
             case "current":
                 return rc.getCurrentRoom().generateDescription(rc.getPlayer(), rc, s);
             case "retreat":
-                switch (rc.getLastDirection()) {
+                switch (rc.getLastDirection()) 
+                {
                     case RoomController.DIRECTION_NORTH:
                         return goSouth();
                     case RoomController.DIRECTION_SOUTH:
@@ -225,13 +228,16 @@ public class ActionController
         return "You killed the " + m.getDescription();
     }
     
-    public String pickup() {
+    public String pickup() 
+    {
         String items = "";
         ArrayList<Item> list = (ArrayList<Item>) rc.getCurrentRoom().getRoomItems().clone();
-        if (list.size() <= 0) {
+        if (list.size() <= 0) 
+        {
             return "No items available to pick up!";
         }
-        for (Item i : list) {
+        for (Item i : list) 
+        {
             rc.getPlayer().addItem(i);
             rc.getCurrentRoom().removeItem(i);
             items += i.getName() + ", ";

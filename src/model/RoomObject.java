@@ -25,8 +25,12 @@ public class RoomObject
         switch(name.toLowerCase())
         {
             case "endgame chest":
-                p.doEndSequence();
-                return "You win the game! Congratulations! PLAYER STAT WIP KOMMER HER";
+                if (p.hasItem("master key"))
+                {
+                    p.doEndSequence();
+                    return "You win the game! Congratulations! PLAYER STAT WIP KOMMER HER";
+                }
+                return "You try to open the chest, but unfortunately it's locked! (Maybe you should go look for a key?)";
             case "red lamp":
                 int buff = RoomController.BUFF_DAMAGE;
                 int turns = r.nextInt(5) + 3;
@@ -49,19 +53,21 @@ public class RoomObject
                 return "You feel the mighty power of the magic lamp! You receive a buff of greater resistance for " + turns + " turns!";
             case "giant chest":
                 Item i = ItemGenerator.GenerateRandomItem();
+                // Removes clutter text from specific items which already have a set description
                 String iText = (i.getDescription().length() < 10 ? i.getDescription() + " " + i.getName() : i.getName());
                 Item i2 = ItemGenerator.GenerateRandomItem();
                 String i2Text = (i2.getDescription().length() < 10 ? i2.getDescription() + " " + i2.getName() : i2.getName());
                 p.addItem(i);
                 p.addItem(i2);
                 rc.getCurrentRoom().removeObject(name);
-                return "You carefully open the chest and peek inside. You find a " + iText + " and a " + i2Text;
+                return "You carefully open the chest and peek inside. You pick up " + iText + " and a " + i2Text;
             case "normal chest":
                 i = ItemGenerator.GenerateRandomItem();
+                // Removes clutter text from specific items which already have a set description
                 iText = iText = (i.getDescription().length() < 10 ? i.getDescription() + " " + i.getName() : i.getName());
                 p.addItem(i);
                 rc.getCurrentRoom().removeObject(name);
-                return "You carefully open the chest and peek inside. You find a " + iText;
+                return "You carefully open the chest and peek inside. pick up " + iText;
             default:
                 return "Unemplemented interaction with the object: " + name;
                     
