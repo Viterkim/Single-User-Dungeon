@@ -24,9 +24,9 @@ public class Player
     private void initInventory() 
     {
         inventory.clear();
-        inventory.add(new Weapon("Fists", "your own fists", 0, 5));
-        inventory.add(new Item("Potion", "", 50));
-        inventory.add(new Item("Potion", "", 50));
+        inventory.add(new Weapon("Fists", "your own fists", -1, 5));
+        inventory.add(new Item("Potion", "", 20));
+        inventory.add(new Item("Potion", "", 20));
     }
     
     public void levelUp()

@@ -11,6 +11,7 @@ import model.Player;
 import model.Room;
 import model.RoomObject;
 import model.RoomObjectGenerator;
+import model.Weapon;
 import view.MainWindow;
 
 public class RoomController
@@ -28,6 +29,7 @@ public class RoomController
     public static final int BUFF_RESISTANCE = 2;
     
     private ArrayList<Room> map;
+    private ArrayList<Item> merchantWares;
     private ActionController ac;
     private Room currentRoom;
     private Player player;
@@ -41,6 +43,7 @@ public class RoomController
         random = new Random();
         ac = new ActionController(this);
         map = new ArrayList<>();
+        merchantWares = new ArrayList<>();
         this.player = player;
         //hardGenerateMap();
         dungeonHeight = 3;
@@ -78,13 +81,17 @@ public class RoomController
         }
         placeMandatoryObjects();
         placeMandatoryItems();
+        prepareMerchant();
     }
 
     public void placeMandatoryObjects()
     {
         Random rng = new Random();
+        //Adds an endgame chest somewhere (NOT in spawn)
         Room tempRoom = getRoom(rng.nextInt(dungeonWidth - 1) +1, rng.nextInt(dungeonHeight - 1) +1);
         tempRoom.addObject(new RoomObject("Endgame Chest", "overflowing with coolness!"));
+        //Adds a merchant to the spawn room
+        getRoom(0,0).addObject(new RoomObject("Merchant", "like a nice fella with a lot of goods (type \"wares\" to see his goods)"));
     }
     
     public void placeMandatoryItems()
@@ -130,6 +137,93 @@ public class RoomController
         return null;
     }
 
+    public void prepareMerchant()
+    {
+        merchantWares.add(new Item("Potion", "", 20));
+        merchantWares.add(new Item("Potion", "", 20));
+        merchantWares.add(new Item("Weapon Shard", "", 20));
+        merchantWares.add(new Weapon("Giant Axe", "A big axe...", 50, 30));
+        merchantWares.add(new Weapon("Small Axe", "An axe", 25, 12));
+        merchantWares.add(new Weapon("Rubber Chicken", "Literally the best weapon in the game", 250, 850));
+    }
+    
+    public String getMerchantWaresString()
+    {
+        String s = "The merchant has the following items for sale:" + System.lineSeparator();
+        for (Item i : merchantWares)
+        {
+            String weapon = "";
+            if (i.getClass().getName().equals("model.Weapon"))
+            {
+                weapon = " | Damage: " + ((Weapon)i).getDamage();
+            }
+            s += i.getName() + " | " + i.getDescription() + " | Price: " + i.getGoldValue() + weapon + System.lineSeparator();
+        }
+        return s;
+    }
+    
+    public String buyMerchantItem(String itemName)
+    {
+        Item tempItem = getMerchantItem(itemName);
+        if (player.getGold() >= tempItem.getGoldValue())
+        {
+            player.addItem(tempItem);
+            player.decreaseGold(tempItem.getGoldValue());
+            removeMerchantItem(tempItem.getName());
+            return "Bought " + tempItem.getName() + "!";
+        }
+        return "You don't have enough gold to buy \"" + itemName + "\"";
+    }
+    
+    public String sellToMerchant(String itemName)
+    {
+        Item tempItem = player.getItem(itemName);
+        // Makes sure the price isn't -1 used for the end game key
+        if (tempItem != null)
+        {
+            if (tempItem.getGoldValue() <= 0)
+            {
+                return "The merchant does not want that item";
+            }
+            int newPrice = tempItem.getGoldValue() / 2;
+            addMerchantItem(tempItem);
+            player.removeFromInventory(itemName);
+            player.increaseGold(newPrice);
+            return "Sold " + tempItem.getName() + " to the merchant for a price of " + newPrice;
+        }
+        return "You don't have the item \"" + itemName + "\"";
+    }
+    
+    public Item getMerchantItem(String s)
+    {
+        for (Item i : merchantWares)
+        {
+            if (i.getName().equalsIgnoreCase(s))
+            {
+                return i;
+            }
+        }
+        return null;
+    }
+    
+    public void addMerchantItem(Item i)
+    {
+        merchantWares.add(i);
+    }
+    
+    public void removeMerchantItem(String s)
+    {
+        for (int i = 0; i < merchantWares.size(); i++)
+        {
+            Item tempItem = merchantWares.get(i);
+            if (tempItem.getName().equalsIgnoreCase(s))
+            {
+                merchantWares.remove(i);
+                break;
+            }
+        }
+    }
+    
     public Room getCurrentRoom() 
     {
         return currentRoom;

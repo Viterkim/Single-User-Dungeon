@@ -23,12 +23,18 @@ public class ActionController
         if (s.contains("interact") && s.length() > "interact".length() + 1) 
         {
             objectUsage = s.substring("interact".length()+1).toLowerCase();
-            System.out.println("objectUsage: " + objectUsage);
         }
         if (s.contains("open") && s.length() > "open".length() + 1) 
         {
             objectUsage = s.substring("open".length() + 1).toLowerCase();
-            System.out.println("objectUsage: " + objectUsage);
+        }
+        if (s.contains("buy") && s.length() > "buy".length() + 1) 
+        {
+            itemUsage = s.substring("buy".length() + 1).toLowerCase();
+        }
+        if (s.contains("sell") && s.length() > "sell".length() + 1) 
+        {
+            itemUsage = s.substring("sell".length() + 1).toLowerCase();
         }
         if (!itemUsage.equalsIgnoreCase(""))
         {
@@ -96,6 +102,26 @@ public class ActionController
                     default:
                         return goEast();
                 }
+            case "buy":
+                if (rc.getCurrentRoom().hasObject("merchant"))
+                {
+                    return rc.buyMerchantItem(itemUsage);
+                }
+                return "There's no merchant in the room!";
+            case "sell":
+                if (rc.getCurrentRoom().hasObject("merchant"))
+                {
+                    return rc.sellToMerchant(itemUsage);
+                }
+                return "There's no merchant in the room!";
+            case "wares":
+            {
+                if (rc.getCurrentRoom().hasObject("merchant"))
+                {
+                    return rc.getMerchantWaresString();
+                }
+                return "There's no merchant in the room!";
+            }
             default:
                 return "Unknown Command";
         }
