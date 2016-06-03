@@ -9,20 +9,20 @@ import java.util.Random;
 
 public class RoomObjectGenerator 
 {
-    private static List<String> places = new ArrayList<String>(Arrays.asList("Green Lamp", "Red Lamp", "Normal Chest", "Giant Chest", "Stash Of Bones"));
+    private static List<String> objects = new ArrayList<String>(Arrays.asList("Green Lamp", "Red Lamp", "Blue Lamp", "Normal Chest", "Giant Chest", "Stash Of Bones"));
     private static String[] DESCRIPTIONS = {"glimmering", "dirty", "shiny", "old", "new"};
     
     public static RoomObject GenerateRandomObject() 
     {
-        if (places.size() <= 0)
+        if (objects.size() <= 0)
         {
             return null;
         }
         Random random = new Random();
-        int randNum = random.nextInt(places.size());
-        String name = places.get(randNum);
+        int randNum = random.nextInt(objects.size());
+        String name = objects.get(randNum);
         String description = DESCRIPTIONS[random.nextInt(DESCRIPTIONS.length)];
-        places.remove(randNum);
+        objects.remove(randNum);
         return new RoomObject(name, description);
     }
 }

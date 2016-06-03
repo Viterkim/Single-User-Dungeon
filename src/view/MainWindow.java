@@ -18,7 +18,7 @@ public class MainWindow extends javax.swing.JFrame
         update();
     }
     
-    private void print(String s, boolean append)
+    public void print(String s, boolean append)
     {
         if (!append)
         {
@@ -190,6 +190,9 @@ public class MainWindow extends javax.swing.JFrame
         print(map.processInput(s), false);
         if (!s.equalsIgnoreCase("current")) {
             print(map.getCurrentRoomDescription(s), true);
+            map.nextTurn(this, true);
+        } else {
+            map.nextTurn(this, false);
         }
         jTextFieldInput.setText("");
         update();

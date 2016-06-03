@@ -18,8 +18,16 @@ public class ActionController
     {
         // Used for the "use" command
         s = s.toLowerCase();
-        String itemUsage = ((s.contains("use") && s.length() > "use".length()+1) ? s.substring("use".length()+1) : "").toLowerCase();
-        String objectUsage = ((s.contains("interact") && s.length() > "interact".length()+1) ? s.substring("interact".length()+1) : "").toLowerCase();
+        String itemUsage = ((s.contains("use") && s.length() > "use".length() + 1) ? s.substring("use".length()+1) : "").toLowerCase();
+        String objectUsage = "";
+        if (s.contains("interact") && s.length() > "interact".length() + 1) {
+            objectUsage = s.substring("interact".length()+1).toLowerCase();
+            System.out.println("objectUsage: " + objectUsage);
+        }
+        if (s.contains("open") && s.length() > "open".length() + 1) {
+            objectUsage = s.substring("open".length() + 1).toLowerCase();
+            System.out.println("objectUsage: " + objectUsage);
+        }
         if (!itemUsage.equalsIgnoreCase(""))
         {
             s = s.replaceAll(" " + itemUsage, "");
@@ -65,6 +73,8 @@ public class ActionController
             case "quit":
                 System.exit(0);
             case "interact":
+                return interact(objectUsage);
+            case "open":
                 return interact(objectUsage);
             case "story":
                 return rc.getPlayer().getStory();
@@ -163,10 +173,10 @@ public class ActionController
                 + "east/right   |   travels in the given direction," + System.lineSeparator()
                 + "south/down   |   travels in the given direction," + System.lineSeparator()
                 + "west/left    |   travels in the given direction" + System.lineSeparator()
-                + "retreat  |    retreats back to the room you were in beforehand" + System.lineSeparator()
-                + "attack/fight |   uses a turn on giving damage to the monster" + System.lineSeparator()
-                + "pickup   | picks up all items on the floor" + System.lineSeparator()
-                + "interact + xxx   |   interacts with an object in the room (ex: \"interact chest\")" + System.lineSeparator()
+                + "retreat  |    retreats back to the room you were in before" + System.lineSeparator()
+                + "attack/fight |   uses a turn on damaging a monster" + System.lineSeparator()
+                + "pickup   | picks up all items from the floor" + System.lineSeparator()
+                + "interact/open + xxx   |   interacts with an object in the room (ex: \"interact chest\")" + System.lineSeparator()
                 + "current  |   gives current information about the room you are in" + System.lineSeparator()
                 + "load/save    |   loads or saves the game" + System.lineSeparator()
                 + "inventory    |  displays your inventory" + System.lineSeparator()
@@ -183,10 +193,11 @@ public class ActionController
         {
             return "There's no monster in the room!";
         }
+        int buff = (rc.getBuffTurns(RoomController.BUFF_DAMAGE) > 0 ? 5 : 0);
         Player p = rc.getPlayer();
         Weapon w = p.getBestWeapon();
         Monster m = rc.getCurrentRoom().getMonster();
-        m.damageMonster(w.getDamage());
+        m.damageMonster(w.getDamage() + buff);
         if (m.getCurrentHp() > 0) 
         {
             Random rng = new Random();
@@ -205,7 +216,10 @@ public class ActionController
             }
             if (m.getCurrentHp() > 0) 
             {
-                return "You dealt " + w.getDamage() + " damage to the " + m.getDescription();
+                if (buff > 0) {
+                    return "You dealt " + w.getDamage() + " damage, and an extra " + buff + " from your greater strength buff to the " + m.getDescription() + "!";
+                }
+                return "You dealt " + w.getDamage() + " damage to the " + m.getDescription() + "!";
             }
         }
         return "You killed the " + m.getDescription();
@@ -246,7 +260,7 @@ public class ActionController
         {
             if (o.getName().equalsIgnoreCase(objectName)) 
             {
-                return o.interact(rc.getPlayer());
+                return o.interact(rc);
             }
         }
         return "This object does not exist!";
@@ -257,7 +271,8 @@ public class ActionController
         String s = "Your inventory contains:" + System.lineSeparator();
         for (Item i : rc.getPlayer().getInventory()) 
         {
-            s += "- " + i.getName() + " | " + i.getDescription() + System.lineSeparator();
+            String wepDmg = (i.getClass().getName().equals("model.Weapon") ? " | " + ((Weapon) i).getDamage() + " damage" : "");
+            s += "- " + i.getName() + " | " + i.getDescription() + wepDmg + System.lineSeparator();
         }
         return s;
     }

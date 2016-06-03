@@ -54,14 +54,24 @@ public class Player
     
     public String getStory()
     {
-        String story = "85 years ago in a small country called Russia. A small village had around 85 villagers and one of those were called " + name +
-                ".\nOne day while travelling to the market to buy some apples, " + name + " fell into a hole and suddenly they found themselves in this weird dungeon.\nGood luck";
+        String story = "85 years ago in a small country called Russia, a small village was inhabited by 85 villagers and one of them was called " + name + "." + 
+                        System.lineSeparator() + 
+                        "One day while travelling to the market to buy some apples, " + name + " fell into a hole and suddenly found themselves in a weird dungeon." + 
+                        System.lineSeparator() +
+                        "On the ground, a few feet away from the fall location, " + name + " sees 2 flasks with a red liquid in them. " + name + " quickly picks them up, and looks around the room." +
+                        System.lineSeparator();
+                        //"Your story starts here. Good luck." + System.lineSeparator();
         return story;
     }
     
     public void increaseMaxHp(int amount)
     {
         this.maxHp += amount;
+    }
+    
+    public void decreaseMaxHp(int amount)
+    {
+        this.maxHp -= amount;
     }
     
     public String getName() 

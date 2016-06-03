@@ -44,7 +44,7 @@ public class Room
         if (command.equalsIgnoreCase("help") || command.equalsIgnoreCase("inventory")) {
             return "";
         }
-        String s = generateMonsterDescription(p, command);
+        String s = generateMonsterDescription(rc, p, command);
         if (s.equals(""))
         {
             s = generateItemDescription();
@@ -53,7 +53,7 @@ public class Room
         return s;
     }
     
-    private String generateMonsterDescription(Player p, String command)
+    private String generateMonsterDescription(RoomController rc, Player p, String command)
     {
         String s = "";
         getMonster();
@@ -75,8 +75,14 @@ public class Room
             if (command.equalsIgnoreCase("current")) {
                 return "You find yourself in a room with " + monster.getName() + " which is a " + monster.getDescription();
             }
-            s += "The monster deals " + monster.getDamage() + " damage to you.";
-            p.damagePlayer(monster.getDamage());
+            boolean buffActive = (rc.getBuffTurns(RoomController.BUFF_RESISTANCE) > 0);
+            int damage = monster.getDamage() - (buffActive ? 3 : 0);
+            if (buffActive) {
+                s += "The monster deals a decreased damage to you because of the buff, you only take " + damage + " damage.";
+            } else {
+                s += "The monster deals " + damage + " damage to you.";
+            }
+            p.damagePlayer(damage);
         }
         return s;
     }
@@ -88,14 +94,14 @@ public class Room
         {
             for (RoomObject o : roomObjects)
             {
-                s += "There's a " + o.getName() + " in the room. Which is " + o.getDescription() + "." + System.lineSeparator();
+                s += "There's a " + o.getName() + " in the room, which looks " + o.getDescription() + "." + System.lineSeparator();
             }
         }
         if (!roomItems.isEmpty())
         {
             for (Item i : roomItems)
             {
-                s += "There's a " + i.getName() + " on the floor. Which is "+ i.getDescription() + "." + System.lineSeparator();
+                s += "There's a " + i.getName() + " on the floor, which looks "+ i.getDescription() + "." + System.lineSeparator();
             }
         }
         return s;
@@ -177,6 +183,16 @@ public class Room
     public void removeItem(Item i) 
     {
         roomItems.remove(i);
+    }
+ 
+    public void removeObject(String name) {
+        ArrayList<RoomObject> cloned = (ArrayList<RoomObject>) roomObjects.clone();
+        for (RoomObject o : cloned) {
+            if (o.getName().equalsIgnoreCase(name)) {
+                roomObjects.remove(o);
+                return;
+            }
+        }
     }
     
 }
