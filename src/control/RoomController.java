@@ -96,8 +96,8 @@ public class RoomController
     public void placeMandatoryItems()
     {
         Random rng = new Random();
-        Room tempRoom = getRoom(rng.nextInt(dungeonWidth - 1) +1, rng.nextInt(dungeonHeight - 1) +1);
-        if (tempRoom.hasObject("endgame chest"))
+        Room tempRoom = getRoom(rng.nextInt(dungeonWidth), rng.nextInt(dungeonHeight));
+        if (tempRoom.hasObject("endgame chest") || (tempRoom.getX() == 0 && tempRoom.getY() == 0))
         {
             placeMandatoryItems();
             return;

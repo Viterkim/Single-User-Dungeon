@@ -40,18 +40,25 @@ public class DifficultySelector extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dungeon Size Selector");
+        setMinimumSize(new java.awt.Dimension(400, 281));
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelEventyr.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabelEventyr.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelEventyr.setText("Eventyr Simulator 2017");
+        getContentPane().add(jLabelEventyr, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 380, -1));
 
         jLabelSize.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabelSize.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelSize.setText("Select Dungeon Size:");
+        getContentPane().add(jLabelSize, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 51, 380, -1));
 
         jLabelWidth.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabelWidth.setText("Dungeon Width:");
+        getContentPane().add(jLabelWidth, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 110, -1));
 
+        jSliderX.setMajorTickSpacing(1);
         jSliderX.setMaximum(9);
         jSliderX.setMinimum(2);
         jSliderX.setMinorTickSpacing(1);
@@ -59,10 +66,13 @@ public class DifficultySelector extends javax.swing.JFrame {
         jSliderX.setPaintTicks(true);
         jSliderX.setSnapToTicks(true);
         jSliderX.setValue(5);
+        getContentPane().add(jSliderX, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, -1, -1));
 
         jLabelHeigth.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabelHeigth.setText("Dungeon Heigth:");
+        getContentPane().add(jLabelHeigth, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
 
+        jSliderY.setMajorTickSpacing(1);
         jSliderY.setMaximum(9);
         jSliderY.setMinimum(2);
         jSliderY.setMinorTickSpacing(1);
@@ -71,6 +81,7 @@ public class DifficultySelector extends javax.swing.JFrame {
         jSliderY.setSnapToTicks(true);
         jSliderY.setToolTipText("");
         jSliderY.setValue(5);
+        getContentPane().add(jSliderY, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
 
         jButtonGenerate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButtonGenerate.setText("GENERATE DUNGEON");
@@ -79,55 +90,7 @@ public class DifficultySelector extends javax.swing.JFrame {
                 jButtonGenerateActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelEventyr, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelSize, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20)
-                                .addComponent(jSliderX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelHeigth)
-                                .addGap(25, 25, 25)
-                                .addComponent(jSliderY, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jButtonGenerate, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelEventyr)
-                .addGap(11, 11, 11)
-                .addComponent(jLabelSize)
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabelWidth))
-                    .addComponent(jSliderX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabelHeigth)
-                        .addGap(55, 55, 55))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSliderY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)))
-                .addComponent(jButtonGenerate)
-                .addContainerGap(23, Short.MAX_VALUE))
-        );
+        getContentPane().add(jButtonGenerate, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 330, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
