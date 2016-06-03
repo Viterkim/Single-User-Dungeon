@@ -2,14 +2,15 @@ package view;
 
 import control.RoomController;
 import javax.swing.JOptionPane;
+import model.Player;
 
 public class MainWindow extends javax.swing.JFrame 
 {
     RoomController map;
   
-    public MainWindow(RoomController map) 
+    public MainWindow(RoomController rc) 
     {
-        this.map = map;
+        this.map = rc;
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
@@ -46,9 +47,6 @@ public class MainWindow extends javax.swing.JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialogInventory = new javax.swing.JDialog();
-        jScrollPaneInventory = new javax.swing.JScrollPane();
-        jTableInventory = new javax.swing.JTable();
         jPanelMain = new javax.swing.JPanel();
         jScrollPaneMain = new javax.swing.JScrollPane();
         jTextAreaMain = new javax.swing.JTextArea();
@@ -59,30 +57,6 @@ public class MainWindow extends javax.swing.JFrame
         jLabelHp = new javax.swing.JLabel();
         jLabelGold = new javax.swing.JLabel();
         jLabelCurrentGold = new javax.swing.JLabel();
-
-        jTableInventory.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPaneInventory.setViewportView(jTableInventory);
-
-        javax.swing.GroupLayout jDialogInventoryLayout = new javax.swing.GroupLayout(jDialogInventory.getContentPane());
-        jDialogInventory.getContentPane().setLayout(jDialogInventoryLayout);
-        jDialogInventoryLayout.setHorizontalGroup(
-            jDialogInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPaneInventory, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
-        );
-        jDialogInventoryLayout.setVerticalGroup(
-            jDialogInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPaneInventory, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
-        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Eventyr Simulator 2017");
@@ -204,16 +178,13 @@ public class MainWindow extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDoAction;
-    private javax.swing.JDialog jDialogInventory;
     private javax.swing.JLabel jLabelCurrentGold;
     private javax.swing.JLabel jLabelGold;
     private javax.swing.JLabel jLabelHp;
     private javax.swing.JLabel jLabelTitle;
     private javax.swing.JPanel jPanelMain;
     private javax.swing.JProgressBar jProgressBarHealth;
-    private javax.swing.JScrollPane jScrollPaneInventory;
     private javax.swing.JScrollPane jScrollPaneMain;
-    private javax.swing.JTable jTableInventory;
     private javax.swing.JTextArea jTextAreaMain;
     private javax.swing.JTextField jTextFieldInput;
     // End of variables declaration//GEN-END:variables

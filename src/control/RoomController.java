@@ -38,16 +38,15 @@ public class RoomController
     private int[] BUFFS;
     private Random random;
     
-    public RoomController(Player player)
+    public RoomController(int x, int y)
     {
         random = new Random();
         ac = new ActionController(this);
         map = new ArrayList<>();
+        player = new Player();
         merchantWares = new ArrayList<>();
-        this.player = player;
-        //hardGenerateMap();
-        dungeonHeight = 3;
-        dungeonWidth = 3;
+        dungeonWidth = x;
+        dungeonHeight = y;
         randomGenerateMap(dungeonWidth, dungeonHeight, 30, 23);
         BUFFS = new int[3];
     }
@@ -106,16 +105,6 @@ public class RoomController
         tempRoom.addItem(new Item("Master Key", "", -1));
     }
     
-    public void hardGenerateMap()
-    {
-        map.add(new Room(0,0));
-        map.add(new Room(0,1));
-        map.add(new Room(1,0));
-        map.add(new Room(1,1));
-        // Temp Start Room
-        currentRoom = getRoom(0,0);
-    }
-
     public Player getPlayer() {
         return player;
     }

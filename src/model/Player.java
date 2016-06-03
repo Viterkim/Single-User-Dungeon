@@ -45,9 +45,9 @@ public class Player
     public void setNewName()
     {
         String tempName = JOptionPane.showInputDialog(null, "What is your name?");
-        if (tempName.equals(""))
+        if (tempName == null || tempName.equals(""))
         {
-            tempName = "Player";
+            tempName = "Bingotrolden";
         }
         this.name = tempName;
     }
