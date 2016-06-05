@@ -1,0 +1,196 @@
+Basic improvements:
+
+Interactions to add:
+"Take" interaction
+"help" instruction
+"move" interaction
+"use" interaction for objects in rooms
+"Read" option, maybe for signs or letters
+
+Add text;
+"x was put in backpack"
+
+
+Possibly add shortned versions of commands;
+Inventory - inv
+Pickup - Pu
+Move n/s/e/w - m n/s/e/w
+Current - c
+Attack - a, or att
+quit - /q or something else, but NOT "q" alone, as it could be a typo, and thus quit the game prematurely.
+
+
+
+
+Searchable help, add index of keyworkds, relating to command:
+
+Example:
+Current - (gives current information about the room you are in); where(?), location, area, room,	 //Basically using the keywords as search terms, but use the description line for the command in the menu.
+
+Pickup - Take, gather, search, lift, put, inv(item), add,
+Inventory - Backpack, item-list, possessions,
+
+
+
+
+
+Add player progression and develeopment - Xp gain, multiple levels (3 grids, differing difficulty); Current room[x][y][globalvariable.currentplane]
+
+
+
+
+
+
+Further ideas for develeopment:
+
+
+
+--------------------------------------------------------
+Introduce level progression;
+
+Intro level - I.E a town of sorts which can teach you basics, such as item interaction.
+This area could introduce you lorewise to the story, since you already have the atmospheric setting, of it being in Russia, 85 years ago, in a small village. The story is though in no way engaging yet, as [Player] simply falls into a hole. Try giving the player purpose, dependant on what thematic tone you are going for. Considering you have "Potions" and "Buffs", you may want to consider fantasy elements, such as: "The small village lay next to a mountain, which was thought to be a volcano, which lay dormant." 
+You may introduce the player to danger by an intro sequence, in which you learn to speak to NPC's and learning basic combat. Maybe the [Player] is seeking to be an adventurer, so he can explore the world, or save his village from lack of resources, or something the likes of. An example of starting this story could be:
+
+"You wake, and sit up in your bed. As you glance out the window, you can see it is early morning. There is a note on your bedside."
+
+This could prompt the player to type a number of actions, such as "Read note", which would give the desired outcome, or "Use note" which could trigger "There is text on the note", indicating that the player needs specific commands to use certain items or engage in a certain activity.
+
+The note could then be a self-memo, or a letter received previously, stating: 
+"I'm always glad to see young faces learning the art of combat. Your training session will begin tomorrow early, be here as soon as possible. - [Random name]" (Possibly state a location to go to, as it may be useful later)
+
+You could then give the player a series of linear instructions, as to reduce the amount of effort needed for the intro to work, such as: "You sit in bed, there is a door leading west."
+When leaving the house, either trigger a monologue, "If I remember correctly, [Random name] teaches combat just [n/s/w/e] of here." or just let the player wander in the direction the note told them to go.
+
+
+Now you have a reasonable basis to give the player a thorough explanation of combat, without metagaming and thus breaking immersion. Next up will be combat mechanics, which I will move into in this next section, as I will continue the level design later; (You know, "Hermeneutic" and all; everything must be considered and constantly reconstructed and reevaluated)
+
+
+
+--------------------------------------------------------
+
+Basics of combat and resource management during:
+
+READ THE SUMMARY FIRST
+
+Quick summary:
+
+For basic combat, I have a few recommendations, dependant on how high priority combat has in your eyes.
+
+If combat has high priority, there can be a intricate system with multiple forms of combat; which I have mapped out below. I have some ideas that crave less work aswell, but those will be simpler and probably less enjoyable, but sometimes simpler can be better. You know the game best yourself, so judge what you think is optimal:
+
+
+[[HIGH PRIORITY]]
+Introduce mana/energy(/mystique/rage/hatred) into the game, along with abilities. 
+
+Make the player choose between the two at the start of the game, which will add replayability to the game, and make you be able to play it AT LEAST twice, where the gameplay will vary slightly.
+
+
+Overview of two basic resources:
+
+[ENERGY:]
+Energy would be the basic of the two, which works in such a way, that you start off with it filled in a battle, and use it for stronger attacks and abilities. The energy bar would refill slowly in a battle, meaning it is good to spend a little, allowing you to replenish it, but overuse can work out badly for longer fights.
+
+NOTE; That the following examples are assuming a certain player level, which can be altered. I will move into energy usage more during the levelling section.
+
+
+Examples:
+Max capacity of current [Player]:						[50 energy]
+Energy replenished every turn: 							[5 energy]
+
+Abilities:
+Precise strike, (increases next attack by 5 damage): 				[15 energy]
+Incapacitate, (causes enemy to be incapable of acting the next 2 turns: 	[45-50 energy]
+
+	//NOTE: I DO NOT KNOW WHETHER YOU CAN ROLL RANDOM NUMBERS WITHOUT MAKING AN ALGORYTHM.
+	//ALSO IF THE NEXT IS IMPLEMENTED, YOU MUST REWORK THE "RETREAT" COMMAND.
+Retreat, (40% (+ levelling upgrade) chance to retreat from battle)		[25 energy]
+	//CURRENTLY FIGURING OUT INCENTIVE TO RETREAT
+
+First aid, (heals a very small amount of health for next 2 turns):		[15-35 energy]
+
+
+
+[MANA]
+Mana would work differently, in the way that it DOES NOT recharge during combat. Instead it must be carefully maintaned. You could maybe add a "channeling" ability that replenished mana for a turn, but took up your action and lowered your defence, which would make it more worthwhile to conserve mana.
+
+
+Examples:
+Max capacity of current [Player]:							[80 mana]
+
+Abilities:
+Frostbolt: (Damage and slow, causing evey third action from an enemy to be useless):	[25-40 mana] (Dpnd on str.)
+Fireball: (Damage enemy for an amount and burn, causing x damage every turn):		[20-40 mana]
+Mend wounds: (Heals a larger amount than first aid, but costs mana(Maybe % heal?)):	[30 mana]
+Rejuvenate mana:(Regenerates a portion of mana, but takes an action and lowers defence) [+15-20 mana]
+
+
+
+
+
+
+[Other resources which you may not need, ONLY IMPLEMENT IF TIME! FOCUS ON PERFECTING OTHERS FIRST!]
+
+
+[Rage]
+Rage could work as a risk/reward mechanic, where you are essentially a tank-dps. This would mean, that you gain rage as you take damage, allowing for some of the most powerful attacks in the game, but some of which may miss or take two turns, or something else that is risky, since it requires you to take damage first.
+
+
+Example:
+Max capacity: 										[100, STARTS AT 0]
+
+
+
+
+[MEDIUM PRIORITY]
+Introduce regenerating mana.
+
+This would work somewhat as above, but crave less work. Basically it works as energy, but is a mixture of "Mystical" spells, that cost more but have status effects on enemy, or simply damaging attacks.
+
+
+
+
+[LOW PRIORITY]
+Don't implement any new form of resource and keep a simpler combat system. 
+
+
+
+[No priority]
+Leave combat as is and instead focus on immersive storytelling.
+
+
+
+
+
+--------------------------------------------------------
+System of xp:
+x = [Monster xp drop] / [Levels above the monster]
+
+Example:
+Slime, - awards 10 xp at level 1
+
+[Slimexp] = 10 / [player level]
+
+
+Or
+
+
+Wolf, - awards 20 xp from level range [1-3]
+
+If level <3, award 20 xp;
+
+Else award:
+
+x = 20 / (y - 3); in which "y" = player level
+
+
+[LEVELING SYSTEM]
+
+The leveling system would obviously depend on your choice of combat design.
+
+
+----------------------------------------------------------
+
+Combat Mechanics:
+
+Introduce attacking in level 1;

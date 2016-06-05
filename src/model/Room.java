@@ -197,10 +197,13 @@ public class Room
         roomItems.remove(i);
     }
  
-    public void removeObject(String name) {
+    public void removeObject(String name) 
+    {
         ArrayList<RoomObject> cloned = (ArrayList<RoomObject>) roomObjects.clone();
-        for (RoomObject o : cloned) {
-            if (o.getName().equalsIgnoreCase(name)) {
+        for (RoomObject o : cloned) 
+        {
+            if (o.getName().equalsIgnoreCase(name)) 
+            {
                 roomObjects.remove(o);
                 return;
             }

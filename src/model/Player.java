@@ -18,6 +18,13 @@ public class Player
         this.currentHp = maxHp;
         this.gold = 20;
         inventory = new ArrayList<>();
+        if (name.equalsIgnoreCase("pelo"))
+        {
+            gold = 9001;
+            maxHp = 9001;
+            currentHp = 9001;
+            JOptionPane.showMessageDialog(null, "Activated god mode. Welcome Pelo. (Please enter a normal name if you wish to play a normal game)");
+        }
         initInventory();
     }
     
@@ -28,7 +35,7 @@ public class Player
         inventory.add(new Item("Potion", "", 20));
         inventory.add(new Item("Potion", "", 20));
     }
-    
+     
     public void levelUp()
     {
         this.level++;
@@ -38,7 +45,7 @@ public class Player
     
     public void doEndSequence()
     {
-        JOptionPane.showMessageDialog(null, "Ez win game best game eu");
+        JOptionPane.showMessageDialog(null, "Thank you for playing our game GG! (    You won!! !! !!!    !!!! !       )");
         System.exit(0);
     }
     
