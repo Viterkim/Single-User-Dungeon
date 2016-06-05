@@ -46,7 +46,7 @@ public class DifficultySelector extends javax.swing.JFrame {
 
         jLabelEventyr.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabelEventyr.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelEventyr.setText("Eventyr Simulator 2017");
+        jLabelEventyr.setText("Dungeon Simulator 2017");
         getContentPane().add(jLabelEventyr, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 380, -1));
 
         jLabelSize.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N

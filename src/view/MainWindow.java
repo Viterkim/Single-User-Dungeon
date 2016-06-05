@@ -82,7 +82,7 @@ public class MainWindow extends javax.swing.JFrame
 
         jLabelTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTitle.setText("Eventyr Simulator 2017");
+        jLabelTitle.setText("Dungeon Simulator 2017");
 
         jProgressBarHealth.setBackground(new java.awt.Color(255, 0, 0));
         jProgressBarHealth.setForeground(new java.awt.Color(0, 255, 0));

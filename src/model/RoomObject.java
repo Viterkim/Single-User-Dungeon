@@ -33,13 +33,13 @@ public class RoomObject
                 return "You try to open the chest, but unfortunately it's locked! (Maybe you should go look for a key?)";
             case "red lamp":
                 int buff = RoomController.BUFF_DAMAGE;
-                int turns = r.nextInt(5) + 3;
+                int turns = r.nextInt(10) + 7;
                 rc.addBuffTurns(buff, turns);
                 rc.getCurrentRoom().removeObject(name);
                 return "You feel the mighty power of the magic lamp! You receive a buff of greater strength for " + turns + " turns!";
             case "green lamp":
                 buff = RoomController.BUFF_HP;
-                turns = r.nextInt(5) + 3;
+                turns = r.nextInt(10) + 7;
                 rc.addBuffTurns(buff, turns);
                 p.increaseMaxHp(10);
                 p.healPlayer(10);
@@ -47,7 +47,7 @@ public class RoomObject
                 return "You feel the mighty power of the magic lamp! You receive a buff of greater health for " + turns + " turns!";
             case "blue lamp":
                 buff = RoomController.BUFF_RESISTANCE;
-                turns = r.nextInt(5) + 3;
+                turns = r.nextInt(10) + 7;
                 rc.addBuffTurns(buff, turns);
                 rc.getCurrentRoom().removeObject(name);
                 return "You feel the mighty power of the magic lamp! You receive a buff of greater resistance for " + turns + " turns!";
