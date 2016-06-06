@@ -1,4 +1,3 @@
-RIP funktion
 Load/save funktion
 JUnit
 Lorte grafer

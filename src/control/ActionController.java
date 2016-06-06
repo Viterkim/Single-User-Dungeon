@@ -213,7 +213,6 @@ public class ActionController
                 + "use + xxx    |   uses an item from your inventory (ex: \"use potion\")" + System.lineSeparator()
                 + "story    |   depicts the tale of our epic hero as a figurative tsunami" + System.lineSeparator()
                 + "quit |   quits the game";
-                
     }
     
     public String attack() 

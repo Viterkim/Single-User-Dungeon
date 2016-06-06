@@ -4,8 +4,11 @@ package control;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import model.Item;
+import model.Monster;
 import model.MonsterGenerator;
 import model.Player;
 import model.Room;
@@ -89,6 +92,7 @@ public class RoomController
         //Adds an endgame chest somewhere (NOT in spawn)
         Room tempRoom = getRoom(rng.nextInt(dungeonWidth - 1) +1, rng.nextInt(dungeonHeight - 1) +1);
         tempRoom.addObject(new RoomObject("Endgame Chest", "overflowing with coolness!"));
+        tempRoom.addMonster(new Monster("Pelo Den Stygge", "FINAL BOSS", 220, 220, 12));
         //Adds a merchant to the spawn room
         getRoom(0,0).addObject(new RoomObject("Merchant", "like a nice fella with a lot of goods (type \"wares\" to see his goods)"));
     }
@@ -130,10 +134,15 @@ public class RoomController
     {
         merchantWares.add(new Item("Potion", "", 20));
         merchantWares.add(new Item("Potion", "", 20));
-        merchantWares.add(new Item("Weapon Shard", "", 20));
+        merchantWares.add(new Item("Potion", "", 20));
+        merchantWares.add(new Item("Potion", "", 20));
+        merchantWares.add(new Item("Potion", "", 20));
+        merchantWares.add(new Item("Potion", "", 20));
+        merchantWares.add(new Item("Weapon Shard", "", 40));
+        merchantWares.add(new Item("Armor", "", 25));
         merchantWares.add(new Weapon("Giant Axe", "A big axe...", 50, 30));
         merchantWares.add(new Weapon("Small Axe", "An axe", 25, 12));
-        merchantWares.add(new Weapon("Rubber Chicken", "Literally the best weapon in the game", 250, 850));
+        merchantWares.add(new Weapon("Rubber Chicken", "Literally the best weapon in the game", 400, 100));
     }
     
     public String getMerchantWaresString()
@@ -154,6 +163,10 @@ public class RoomController
     public String buyMerchantItem(String itemName)
     {
         Item tempItem = getMerchantItem(itemName);
+        if (tempItem == null)
+        {
+            return "The merchant is out of " + itemName + "!";
+        }
         if (player.getGold() >= tempItem.getGoldValue())
         {
             player.addItem(tempItem);
@@ -262,29 +275,43 @@ public class RoomController
         return ac.processInput(s);
     }
     
-    public void addBuffTurns(int buff, int turns) {
+    public void addBuffTurns(int buff, int turns) 
+    {
         BUFFS[buff] += turns;
     }
     
-    public int getBuffTurns(int buff) {
+    public int getBuffTurns(int buff) 
+    {
         return BUFFS[buff];
     }
 
-    public int getTurnsUsed() {
+    public int getTurnsUsed() 
+    {
         return turnsUsed;
     }
     
-    public void nextTurn(MainWindow gui, boolean increment) {
-        if (!increment) {
+    public void nextTurn(MainWindow gui, boolean increment) 
+    {
+        if (player.getCurrentHp() <= 0)
+        {
+            JOptionPane.showMessageDialog(null, "You faint instantly and die!");
+            System.exit(0);
+        }
+        if (!increment) 
+        {
             gui.print("Turn: " + turnsUsed, true);
             return;
         }
-        for (int i = 0; i < BUFFS.length; i++) {
-            if (BUFFS[i] > 0) {
+        for (int i = 0; i < BUFFS.length; i++) 
+        {
+            if (BUFFS[i] > 0) 
+            {
                 BUFFS[i]--;
-                if (BUFFS[i] == 0) {
+                if (BUFFS[i] == 0) 
+                {
                     gui.print("You feel the " + getBuffName(i) + " slowly dissipate from you.", true);
-                    if (i == 1) {
+                    if (i == 1) 
+                    {
                         player.decreaseMaxHp(10);
                         player.damagePlayer(10);
                     }
