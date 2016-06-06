@@ -2,11 +2,12 @@
 package model;
 
 import control.RoomController;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
 
-public class Room 
+public class Room implements Serializable
 {
     
     ArrayList<RoomObject> roomObjects;

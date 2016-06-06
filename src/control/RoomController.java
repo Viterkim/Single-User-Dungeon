@@ -14,10 +14,11 @@ import model.Player;
 import model.Room;
 import model.RoomObject;
 import model.RoomObjectGenerator;
+import model.SaveLoadHandler;
 import model.Weapon;
 import view.MainWindow;
 
-public class RoomController
+public class RoomController implements Serializable
 {
     
     static final String[] DIRECTIONS = {"North", "South", "East", "West"};
@@ -40,6 +41,7 @@ public class RoomController
     private int dungeonHeight, dungeonWidth, turnsUsed;
     private int[] BUFFS;
     private Random random;
+    private String bonusS;
     
     public RoomController(int x, int y)
     {
@@ -318,6 +320,7 @@ public class RoomController
                 }
             }
         }
+        player.increaseCurrentEnergy(2);
         turnsUsed++;
         gui.print("Turn: " + turnsUsed, true);
     }
@@ -326,5 +329,16 @@ public class RoomController
         String[] buffs = {"buff of greater strength", "buff of greater health", "buff of greater resistance"};
         return buffs[buff];
     } 
+
+    public String getBonusS() 
+    {
+        return bonusS;
+    }
+
+    public void setBonusS(String bonusS) 
+    {
+        this.bonusS = bonusS;
+    }
+    
     
 }

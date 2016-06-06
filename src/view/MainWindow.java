@@ -8,7 +8,7 @@ import model.Player;
 
 public class MainWindow extends javax.swing.JFrame 
 {
-    RoomController map;
+    public static RoomController map;
   
     public MainWindow(RoomController rc) 
     {
@@ -16,8 +16,16 @@ public class MainWindow extends javax.swing.JFrame
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
-        print(map.getPlayer().getStory(), true);
-        print(map.getCurrentRoomDescription(""), true);
+        if (rc.getTurnsUsed() <= 0)
+        {
+            print(map.getPlayer().getStory(), true);
+            print(map.getCurrentRoomDescription(""), true);
+        }
+        else
+        {
+            print(map.getCurrentRoomDescription(""), true);
+            print("Turn: " + rc.getTurnsUsed(), true);
+        }
         update();
     }
     
@@ -39,10 +47,19 @@ public class MainWindow extends javax.swing.JFrame
     {
         int maxHp = map.getPlayer().getMaxHp();
         int currentHp = map.getPlayer().getCurrentHp();
+        int maxEnergy = map.getPlayer().getMaxEnergy();
+        int currentEnergy = map.getPlayer().getCurrentEnergy();
         jLabelCurrentGold.setText("" + map.getPlayer().getGold());
         jProgressBarHealth.setMaximum(maxHp);
         jProgressBarHealth.setString(currentHp + "/" + maxHp);
         jProgressBarHealth.setValue(currentHp);
+        jProgressBarEnergy.setString(currentEnergy + "/" + maxEnergy);
+        jProgressBarEnergy.setValue(currentEnergy);
+    }
+    
+    public static void setRoomController(RoomController rc)
+    {
+        MainWindow.map = rc;
     }
     
     @SuppressWarnings("unchecked")
@@ -66,10 +83,11 @@ public class MainWindow extends javax.swing.JFrame
         jLabelGold = new javax.swing.JLabel();
         jLabelCurrentGold = new javax.swing.JLabel();
         jButtonHelp = new javax.swing.JButton();
+        jProgressBarEnergy = new javax.swing.JProgressBar();
+        jLabelEnergy = new javax.swing.JLabel();
 
         jDialogHelp.setTitle("Help Window");
         jDialogHelp.setMinimumSize(new java.awt.Dimension(400, 563));
-        jDialogHelp.setPreferredSize(new java.awt.Dimension(400, 563));
         jDialogHelp.setResizable(false);
         jDialogHelp.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -145,6 +163,15 @@ public class MainWindow extends javax.swing.JFrame
             }
         });
 
+        jProgressBarEnergy.setBackground(new java.awt.Color(153, 153, 255));
+        jProgressBarEnergy.setForeground(new java.awt.Color(51, 255, 255));
+        jProgressBarEnergy.setMaximum(10);
+        jProgressBarEnergy.setToolTipText("");
+        jProgressBarEnergy.setString("0");
+        jProgressBarEnergy.setStringPainted(true);
+
+        jLabelEnergy.setText("Energy:");
+
         javax.swing.GroupLayout jPanelMainLayout = new javax.swing.GroupLayout(jPanelMain);
         jPanelMain.setLayout(jPanelMainLayout);
         jPanelMainLayout.setHorizontalGroup(
@@ -164,9 +191,13 @@ public class MainWindow extends javax.swing.JFrame
                         .addComponent(jLabelGold)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelCurrentGold)
-                        .addGap(118, 118, 118)
-                        .addComponent(jButtonDoAction, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 316, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                        .addComponent(jButtonDoAction, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66)
+                        .addComponent(jLabelEnergy)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jProgressBarEnergy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
                         .addComponent(jButtonHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -182,8 +213,11 @@ public class MainWindow extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonDoAction)
-                        .addComponent(jButtonHelp))
+                        .addComponent(jButtonHelp)
+                        .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jProgressBarEnergy, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelEnergy)
+                            .addComponent(jButtonDoAction)))
                     .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jProgressBarHealth, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabelGold)
@@ -211,7 +245,7 @@ public class MainWindow extends javax.swing.JFrame
         {
             jDialogHelp.setVisible(true);
             Point p = this.getLocation();
-            jDialogHelp.setLocation(p.x + 912, p.y);
+            jDialogHelp.setLocation(p.x + 928, p.y);
             jTextAreaHelp.setText(helpText());
         }
         else
@@ -224,10 +258,13 @@ public class MainWindow extends javax.swing.JFrame
     private void jButtonDoActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDoActionActionPerformed
         String s = jTextFieldInput.getText();
         print(map.processInput(s), false);
-        if (!s.equalsIgnoreCase("current")) {
+        if (!s.equalsIgnoreCase("current")) 
+        {
             print(map.getCurrentRoomDescription(s), true);
             map.nextTurn(this, true);
-        } else {
+        } 
+        else 
+        {
             map.nextTurn(this, false);
         }
         jTextFieldInput.setText("");
@@ -266,7 +303,9 @@ public class MainWindow extends javax.swing.JFrame
                 + "south/down   |   travels in the given direction," + System.lineSeparator()
                 + "west/left    |   travels in the given direction" + System.lineSeparator()
                 + "retreat  |    retreats back to the room you were in before" + System.lineSeparator()
-                + "attack/fight |   uses a turn on damaging a monster" + System.lineSeparator()
+                + "attack |   uses a turn on damaging a monster" + System.lineSeparator()
+                + "powerattack |   a more powerful attack (costs 5 energy)" + System.lineSeparator()
+                + "superattack |   a SUPER powerful attack (costs 10 energy)" + System.lineSeparator()
                 + "pickup   | picks up all items from the floor" + System.lineSeparator()
                 + "interact/open + xxx   |   interacts with an object in the room (ex: \"interact chest\")" + System.lineSeparator()
                 + "current  |   gives current information about the room you are in" + System.lineSeparator()
@@ -284,12 +323,14 @@ public class MainWindow extends javax.swing.JFrame
     private javax.swing.JButton jButtonHelp;
     private javax.swing.JDialog jDialogHelp;
     private javax.swing.JLabel jLabelCurrentGold;
+    private javax.swing.JLabel jLabelEnergy;
     private javax.swing.JLabel jLabelGold;
     private javax.swing.JLabel jLabelHelp;
     private javax.swing.JLabel jLabelHp;
     private javax.swing.JLabel jLabelSearch;
     private javax.swing.JLabel jLabelTitle;
     private javax.swing.JPanel jPanelMain;
+    private javax.swing.JProgressBar jProgressBarEnergy;
     private javax.swing.JProgressBar jProgressBarHealth;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPaneMain;

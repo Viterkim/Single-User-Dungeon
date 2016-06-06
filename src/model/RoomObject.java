@@ -2,10 +2,11 @@
 package model;
 
 import control.RoomController;
+import java.io.Serializable;
 import java.util.Random;
 
 
-public class RoomObject 
+public class RoomObject implements Serializable
 {
     private String name;
     private String description;
@@ -16,7 +17,6 @@ public class RoomObject
         r = new Random();
         this.name = name;
         this.description = description;
-        System.out.println("[RoomObject] Made a new roomObject, name: " + name + ", description: " + description);
     }
     
     public String interact(RoomController rc)

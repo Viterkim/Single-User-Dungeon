@@ -1,18 +1,21 @@
 
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-public class Player 
+public class Player implements Serializable
 {
     private String name;
-    private int level, currentHp, maxHp, gold;
+    private int level, currentHp, maxHp, gold, currentEnergy, maxEnergy;
     private ArrayList<Item> inventory;
     
     public Player()
     {
         setNewName();
+        this.maxEnergy = 10;
+        this.currentEnergy = maxEnergy;
         this.level = 1;
         this.maxHp = 30;
         this.currentHp = maxHp;
@@ -20,9 +23,11 @@ public class Player
         inventory = new ArrayList<>();
         if (name.equalsIgnoreCase("pelo"))
         {
-            gold = 9001;
-            maxHp = 9001;
-            currentHp = 9001;
+            this.gold = 9001;
+            this.maxHp = 9001;
+            this.currentHp = 9001;
+            this.maxEnergy = 9001;
+            this.currentEnergy = 9001;
             JOptionPane.showMessageDialog(null, "Activated god mode. Welcome Pelo. (Please enter a normal name if you wish to play a normal game)");
         }
         initInventory();
@@ -45,7 +50,35 @@ public class Player
     
     public void doEndSequence()
     {
-        JOptionPane.showMessageDialog(null, "Thank you for playing our game GG! (    You won!! !! !!!    !!!! !       )");
+        int totalPoints = 0;
+        if (inventory != null)
+        {
+            for (Item i : inventory) 
+            {
+                if (i != null && i.getGoldValue() > 0)
+                {
+                    totalPoints += i.getGoldValue();
+                }
+            }
+        }
+        totalPoints += gold;
+        
+        String endMessage = "As you open the chest using the master key, you see a ladder extend from the bottom of the chests base.\n" +
+        "It goes through the ceiling and far beyond what you can see.\n" +
+        "You ponder the opportunity a moment, but swiftly decide...\n" +
+        "\n" +
+        "As you are approaching the top of the ladder, light fills your eyes.\n" +
+        "You are blinded, but continue climbing.\n" +
+        "\n" +
+        "You reach the top, step out onto the field where you fell into the hole to begin with.\n" +
+        "You look around, but no hole is to be seen?\n" +
+        "\n" +
+        "Has this whole thing been a dream? A fantasy because of your craving for adventure?\n" +
+        "You're not sure, how would you prove to yourself this actually happened?\n" +
+        "\n" +
+        "You slowly move your hand into your pocket.\n" +
+        "Out of it, you pull " + totalPoints + " gold coins...";
+        JOptionPane.showMessageDialog(null, endMessage);
         System.exit(0);
     }
     
@@ -190,4 +223,33 @@ public class Player
         }
         return bestWeapon;
     }
+
+    public int getCurrentEnergy() 
+    {
+        return currentEnergy;
+    }
+    
+    public void increaseCurrentEnergy(int x)
+    {
+        this.currentEnergy += x;
+        if (currentEnergy >= maxEnergy)
+        {
+            this.currentEnergy = maxEnergy;
+        }
+    }
+    
+    public void decreaseCurrentEnergy(int x)
+    {
+        this.currentEnergy -= x;
+        if (currentEnergy <= 0)
+        {
+            this.currentEnergy = 0;
+        }
+    }
+
+    public int getMaxEnergy() 
+    {
+        return maxEnergy;
+    }
+    
 }

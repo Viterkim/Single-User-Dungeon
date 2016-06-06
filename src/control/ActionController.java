@@ -1,12 +1,24 @@
 
 package control;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 import model.*;
+import view.MainWindow;
 
-public class ActionController 
+public class ActionController implements Serializable
 {
+    final int NORMAL_ATTACK = 0;
+    final int POWER_ATTACK = 1;
+    final int SUPER_ATTACK = 2;
+
+    final int POWER_BUFF = 3;
+    final int SUPER_BUFF = 10;
+    
+    final int POWER_COST = 5;
+    final int SUPER_COST = 10;
+    
     RoomController rc;
     
     public ActionController(RoomController rc)
@@ -65,9 +77,19 @@ public class ActionController
             case "help":
                 return help();
             case "attack":
-                return attack();
-            case "fight":
-                return attack();
+                return attack(0);
+            case "powerattack":
+                if (rc.getPlayer().getCurrentEnergy() >= POWER_COST)
+                {
+                    return attack(1);
+                }
+                return "Don't have enough energy for a power attack!";
+            case "superattack":
+                if (rc.getPlayer().getCurrentEnergy() >= SUPER_COST)
+                {
+                    return attack(2);
+                }
+                return "Don't have enough energy for a super attack!";
             case "pickup":
                 return pickup();
             case "use":
@@ -75,9 +97,18 @@ public class ActionController
             case "inventory":
                 return inventory();
             case "load":
-                return "Not Available";
+                String playerName = rc.getPlayer().getName();
+                RoomController newController = SaveLoadHandler.load(playerName);
+                if (newController == null)
+                {
+                    return "No saves found for " + playerName + "!";
+                }
+                this.rc = newController;
+                MainWindow.setRoomController(newController);
+                return "Loaded from save!";
             case "save":
-                return "Not Available";
+                SaveLoadHandler.save(rc, rc.getPlayer().getName());
+                return "Saved the game!";
             case "quit":
                 System.exit(0);
             case "interact":
@@ -203,7 +234,9 @@ public class ActionController
                 + "south/down   |   travels in the given direction," + System.lineSeparator()
                 + "west/left    |   travels in the given direction" + System.lineSeparator()
                 + "retreat  |    retreats back to the room you were in before" + System.lineSeparator()
-                + "attack/fight |   uses a turn on damaging a monster" + System.lineSeparator()
+                + "attack |   uses a turn on damaging a monster" + System.lineSeparator()
+                + "powerattack |   a more powerful attack (costs 5 energy)" + System.lineSeparator()
+                + "superattack |   a SUPER powerful attack (costs 10 energy)" + System.lineSeparator()
                 + "pickup   | picks up all items from the floor" + System.lineSeparator()
                 + "interact/open + xxx   |   interacts with an object in the room (ex: \"interact chest\")" + System.lineSeparator()
                 + "current  |   gives current information about the room you are in" + System.lineSeparator()
@@ -215,17 +248,30 @@ public class ActionController
                 + "quit |   quits the game";
     }
     
-    public String attack() 
+    public String attack(int type) 
     {
         if (rc.getCurrentRoom().getMonster() == null)
         {
             return "There's no monster in the room!";
         }
         int buff = (rc.getBuffTurns(RoomController.BUFF_DAMAGE) > 0 ? 5 : 0);
+        int typeBuff = 0;
+        
+        if (type != NORMAL_ATTACK)
+        {
+            if (type == POWER_ATTACK)
+            {
+                typeBuff += POWER_BUFF;
+            }
+            else if (type == SUPER_ATTACK)
+            {
+                typeBuff += SUPER_BUFF;
+            }
+        }
         Player p = rc.getPlayer();
         Weapon w = p.getBestWeapon();
         Monster m = rc.getCurrentRoom().getMonster();
-        m.damageMonster(w.getDamage() + buff);
+        m.damageMonster(w.getDamage() + buff + typeBuff);
         if (m.getCurrentHp() > 0) 
         {
             Random rng = new Random();
@@ -244,10 +290,16 @@ public class ActionController
             }
             if (m.getCurrentHp() > 0) 
             {
-                if (buff > 0) {
-                    return "You dealt " + w.getDamage() + " damage, and an extra " + buff + " from your greater strength buff to the " + m.getDescription() + "!";
+                String flavorText = "";
+                if (buff > 0) 
+                {
+                    flavorText += "And an extra " + buff + " from your greater strength buff. ";
                 }
-                return "You dealt " + w.getDamage() + " damage to the " + m.getDescription() + "!";
+                if (typeBuff > 0)
+                {
+                    flavorText += "Your special attack buffed your attack by " + typeBuff;
+                }
+                return "You dealt " + w.getDamage() + " damage to the " + m.getDescription() + "! " + flavorText;
             }
         }
         return "You killed the " + m.getDescription();
@@ -307,5 +359,5 @@ public class ActionController
         }
         return s;
     }
-
+    
 }

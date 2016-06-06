@@ -8,9 +8,6 @@
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[400, 563]"/>
         </Property>
-        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[400, 563]"/>
-        </Property>
         <Property name="resizable" type="boolean" value="false"/>
       </Properties>
 
@@ -131,9 +128,13 @@
                           <Component id="jLabelGold" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabelCurrentGold" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
-                          <Component id="jButtonDoAction" min="-2" pref="106" max="-2" attributes="0"/>
-                          <EmptySpace pref="316" max="32767" attributes="0"/>
+                          <EmptySpace pref="114" max="32767" attributes="0"/>
+                          <Component id="jButtonDoAction" min="-2" pref="131" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                          <Component id="jLabelEnergy" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jProgressBarEnergy" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                           <Component id="jButtonHelp" min="-2" pref="85" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -153,8 +154,12 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButtonDoAction" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonHelp" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                              <Component id="jProgressBarEnergy" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                              <Component id="jLabelEnergy" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButtonDoAction" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jProgressBarHealth" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
@@ -250,6 +255,25 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonHelpActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JProgressBar" name="jProgressBarEnergy">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="99" red="99" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="33" type="rgb"/>
+            </Property>
+            <Property name="maximum" type="int" value="10"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+            <Property name="string" type="java.lang.String" value="0"/>
+            <Property name="stringPainted" type="boolean" value="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelEnergy">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Energy:"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

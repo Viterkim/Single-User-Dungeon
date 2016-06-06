@@ -1,8 +1,10 @@
 
 package model;
 
+import java.io.Serializable;
 
-public class Monster 
+
+public class Monster implements Serializable
 {
     private final String name, description;
     private final int maxHp, damage;

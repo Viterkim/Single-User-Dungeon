@@ -5,7 +5,10 @@
  */
 package view;
 
+import control.ActionController;
 import control.RoomController;
+import javax.swing.JOptionPane;
+import model.SaveLoadHandler;
 
 /**
  *
@@ -37,6 +40,7 @@ public class DifficultySelector extends javax.swing.JFrame {
         jLabelHeigth = new javax.swing.JLabel();
         jSliderY = new javax.swing.JSlider();
         jButtonGenerate = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dungeon Size Selector");
@@ -52,7 +56,7 @@ public class DifficultySelector extends javax.swing.JFrame {
         jLabelSize.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabelSize.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelSize.setText("Select Dungeon Size:");
-        getContentPane().add(jLabelSize, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 51, 380, -1));
+        getContentPane().add(jLabelSize, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 51, 160, -1));
 
         jLabelWidth.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabelWidth.setText("Dungeon Width:");
@@ -92,6 +96,14 @@ public class DifficultySelector extends javax.swing.JFrame {
         });
         getContentPane().add(jButtonGenerate, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 330, -1));
 
+        jButton1.setText("Load");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 80, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -102,8 +114,26 @@ public class DifficultySelector extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButtonGenerateActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String playerName = JOptionPane.showInputDialog("Load from playername:");
+        if (playerName == null || playerName.equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Please enter a valid name");
+            return;
+        }
+        RoomController newController = SaveLoadHandler.load(playerName);
+        if (newController == null)
+        {
+            JOptionPane.showMessageDialog(null, "Couldn't find any save for " + playerName);
+            return;
+        }
+        new MainWindow(newController);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonGenerate;
     private javax.swing.JLabel jLabelEventyr;
     private javax.swing.JLabel jLabelHeigth;
