@@ -153,14 +153,12 @@
                   <Component id="jTextFieldInput" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButtonHelp" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="3" groupAlignment="3" attributes="0">
-                              <Component id="jProgressBarEnergy" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
-                              <Component id="jLabelEnergy" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButtonDoAction" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="jProgressBarEnergy" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                          <Component id="jLabelEnergy" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonDoAction" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="jButtonHelp" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jProgressBarHealth" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                           <Component id="jLabelGold" alignment="3" min="-2" max="-2" attributes="0"/>

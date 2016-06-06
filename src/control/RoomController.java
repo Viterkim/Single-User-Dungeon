@@ -4,9 +4,7 @@ package control;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
 import model.Item;
 import model.Monster;
 import model.MonsterGenerator;
@@ -14,11 +12,10 @@ import model.Player;
 import model.Room;
 import model.RoomObject;
 import model.RoomObjectGenerator;
-import model.SaveLoadHandler;
 import model.Weapon;
 import view.MainWindow;
 
-public class RoomController implements Serializable
+public final class RoomController implements Serializable
 {
     
     static final String[] DIRECTIONS = {"North", "South", "East", "West"};
@@ -32,15 +29,16 @@ public class RoomController implements Serializable
     public static final int BUFF_HP = 1;
     public static final int BUFF_RESISTANCE = 2;
     
-    private ArrayList<Room> map;
-    private ArrayList<Item> merchantWares;
-    private ActionController ac;
+    private final ArrayList<Room> map;
+    private final ArrayList<Item> merchantWares;
+    private final ActionController ac;
     private Room currentRoom;
-    private Player player;
+    private final Player player;
     private int lastDirection = -1;
-    private int dungeonHeight, dungeonWidth, turnsUsed;
-    private int[] BUFFS;
-    private Random random;
+    private int turnsUsed;
+    private final int dungeonHeight, dungeonWidth;
+    private final int[] BUFFS;
+    private final Random random;
     private String bonusS;
     
     public RoomController(int x, int y)

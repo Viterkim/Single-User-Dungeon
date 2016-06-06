@@ -13,11 +13,11 @@ public class Room implements Serializable
     ArrayList<RoomObject> roomObjects;
     ArrayList<Item> roomItems;
     
-    private int x, y;
+    private final int x, y;
     private Monster monster;
     private boolean fightShown;
-    private Random random;
-    private String[] directionDescription;
+    private final Random random;
+    private final String[] directionDescription;
     
     public Room(int x, int y) 
     {

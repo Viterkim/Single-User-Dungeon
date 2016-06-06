@@ -1,9 +1,7 @@
 
 package control;
 
-import model.Player;
 import view.DifficultySelector;
-import view.MainWindow;
 
 
 public class MainClass 

@@ -9,8 +9,8 @@ import java.util.Random;
 
 public class RoomObjectGenerator 
 {
-    private static List<String> objects = new ArrayList<String>(Arrays.asList("Green Lamp", "Red Lamp", "Blue Lamp", "Normal Chest", "Giant Chest", "Stash Of Bones"));
-    private static String[] DESCRIPTIONS = {"glimmering", "dirty", "shiny", "old", "new"};
+    private static final List<String> objects = new ArrayList<>(Arrays.asList("Green Lamp", "Red Lamp", "Blue Lamp", "Normal Chest", "Giant Chest", "Stash Of Bones"));
+    private static final String[] DESCRIPTIONS = {"glimmering", "dirty", "shiny", "old", "new"};
     
     public static RoomObject GenerateRandomObject() 
     {

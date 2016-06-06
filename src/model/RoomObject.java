@@ -10,7 +10,7 @@ public class RoomObject implements Serializable
 {
     private String name;
     private String description;
-    private Random r;
+    private final Random r;
     
     public RoomObject(String name, String description)
     {
@@ -64,7 +64,7 @@ public class RoomObject implements Serializable
             case "normal chest":
                 i = ItemGenerator.GenerateRandomItem();
                 // Removes clutter text from specific items which already have a set description
-                iText = iText = (i.getDescription().length() < 10 ? i.getDescription() + " " + i.getName() : i.getName());
+                iText = (i.getDescription().length() < 10 ? i.getDescription() + " " + i.getName() : i.getName());
                 p.addItem(i);
                 rc.getCurrentRoom().removeObject(name);
                 return "You carefully open the chest and peek inside. pick up " + iText;

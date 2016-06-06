@@ -5,11 +5,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-public class Player implements Serializable
+public final class Player implements Serializable
 {
     private String name;
     private int level, currentHp, maxHp, gold, currentEnergy, maxEnergy;
-    private ArrayList<Item> inventory;
+    private final ArrayList<Item> inventory;
     
     public Player()
     {

@@ -3,16 +3,14 @@ package view;
 import control.RoomController;
 import java.awt.Point;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
-import model.Player;
 
-public class MainWindow extends javax.swing.JFrame 
+public final class MainWindow extends javax.swing.JFrame 
 {
     public static RoomController map;
   
     public MainWindow(RoomController rc) 
     {
-        this.map = rc;
+        MainWindow.map = rc;
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
@@ -213,11 +211,10 @@ public class MainWindow extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonHelp)
-                        .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jProgressBarEnergy, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelEnergy)
-                            .addComponent(jButtonDoAction)))
+                        .addComponent(jProgressBarEnergy, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelEnergy)
+                        .addComponent(jButtonDoAction))
+                    .addComponent(jButtonHelp)
                     .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jProgressBarHealth, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabelGold)

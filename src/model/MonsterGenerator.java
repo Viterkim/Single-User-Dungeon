@@ -14,10 +14,10 @@ import java.util.Random;
 public class MonsterGenerator 
 {
  
-    private static String[] NAMES = {"Frank", "Billy", "Tom", "Casper", "Ongo", "Viggo", "Hugo", "Peter", "Chris", "Viktor", "Mathias", "Muhammed", "Abdul", "Jesus", "Zelda"};
-    private static String[] DESCRIPTIONS = {"blob of goo", "huge skeleton", "angry dwarf", "big snake", "cockraoch", "magical angry rock", "flying bat", "small gnoll", "angry robot"};
-    private static int[] HPS = {5, 6 , 7 , 8, 9, 10, 15, 20, 25, 30};
-    private static int[] DAMAGES = {3, 4, 5, 6, 7, 8, 9, 10, 11};
+    private static final String[] NAMES = {"Frank", "Billy", "Tom", "Casper", "Ongo", "Viggo", "Hugo", "Peter", "Chris", "Viktor", "Mathias", "Muhammed", "Abdul", "Jesus", "Zelda"};
+    private static final String[] DESCRIPTIONS = {"blob of goo", "huge skeleton", "angry dwarf", "big snake", "cockraoch", "magical angry rock", "flying bat", "small gnoll", "angry robot"};
+    private static final int[] HPS = {5, 6 , 7 , 8, 9, 10, 15, 20, 25, 30, 35};
+    private static final int[] DAMAGES = {3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 15};
     
     public static Monster GenerateRandomMonster() 
     {

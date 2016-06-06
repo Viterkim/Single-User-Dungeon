@@ -6,10 +6,10 @@ import java.util.Random;
 
 public class WeaponGenerator 
 {
-    private static String[] NAMES = {"Bastard Sword", "Long Sword", "Short Sword"};
-    private static String[] DESCRIPTIONS = {"a shiny weapon", "a dirty weapon", "a factory new weapon"};
-    private static int[] VALUE = {5, 7, 10, 12, 14, 15, 17, 20, 25};
-    private static int[] DAMAGES = {5, 7, 10, 12, 14, 15, 17, 20};
+    private static final String[] NAMES = {"Bastard Sword", "Long Sword", "Short Sword"};
+    private static final String[] DESCRIPTIONS = {"a shiny weapon", "a dirty weapon", "a factory new weapon"};
+    private static final int[] VALUE = {5, 7, 10, 12, 14, 15, 17, 20, 25};
+    private static final int[] DAMAGES = {5, 7, 10, 12, 14, 15, 17, 20};
     
     public static Weapon GenerateRandomWeapon() 
     {

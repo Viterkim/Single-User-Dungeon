@@ -6,9 +6,9 @@ import java.util.Random;
 
 public class ItemGenerator 
 {
-    private static String[] NAMES = {"Ruby", "Pearl", "Silver Necklace", "Golden Nugget", "Gold Coins", "Potion", "Weapon Shard", "Shroom", "armor"};
-    private static String[] DESCRIPTIONS = {"shiny", "dirty", "broken"};
-    private static int[] VALUE = {10, 20 , 25, 50, 200, 300};
+    private static final String[] NAMES = {"Ruby", "Pearl", "Silver Necklace", "Golden Nugget", "Gold Coins", "Potion", "Weapon Shard", "Shroom", "armor"};
+    private static final String[] DESCRIPTIONS = {"shiny", "dirty", "broken"};
+    private static final int[] VALUE = {10, 20 , 25, 50, 200, 300};
     
     public static Item GenerateRandomItem() 
     {
