@@ -56,6 +56,7 @@ public class ActionController implements Serializable
         {
             s = s.replaceAll(" " + objectUsage, "");
         }
+        rc.setLatestMove(s);
         switch(s.toLowerCase())
         {
             case "north":
@@ -262,10 +263,12 @@ public class ActionController implements Serializable
             if (type == POWER_ATTACK)
             {
                 typeBuff += POWER_BUFF;
+                rc.getPlayer().decreaseCurrentEnergy(POWER_COST);
             }
             else if (type == SUPER_ATTACK)
             {
                 typeBuff += SUPER_BUFF;
+                rc.getPlayer().decreaseCurrentEnergy(SUPER_COST);
             }
         }
         Player p = rc.getPlayer();

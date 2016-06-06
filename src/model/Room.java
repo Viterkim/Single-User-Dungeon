@@ -62,25 +62,29 @@ public class Room implements Serializable
         {
             if (random.nextBoolean()) 
             {
-                s += "You encounter " + monster.getName() + " which is a " + monster.getDescription() + ". You take " + monster.getDamage() + " from the initial encounter with the monster. You can attack or retreat.";
+                s += "You encounter " + monster.getName() + " who is a " + monster.getDescription() + ". You take " + monster.getDamage() + " damage from the initial encounter with the monster. You can attack or retreat.";
                 p.damagePlayer(monster.getDamage());
             } 
             else 
             {
-                s += "You encounter " + monster.getName() + " which is a " + monster.getDescription() + ". You take no damage from the initial encounter with the monster. You can attack or retreat.";
+                s += "You encounter " + monster.getName() + " who is a " + monster.getDescription() + ". You take no damage from the initial encounter with the monster. You can attack or retreat.";
             }
             fightShown = true;
         }
         else if (monster != null && fightShown)
         {
-            if (command.equalsIgnoreCase("current")) {
+            if (command.equalsIgnoreCase("current")) 
+            {
                 return "You find yourself in a room with " + monster.getName() + " which is a " + monster.getDescription();
             }
             boolean buffActive = (rc.getBuffTurns(RoomController.BUFF_RESISTANCE) > 0);
             int damage = monster.getDamage() - (buffActive ? 3 : 0);
-            if (buffActive) {
+            if (buffActive) 
+            {
                 s += "The monster deals a decreased damage to you because of the buff, you only take " + damage + " damage.";
-            } else {
+            } 
+            else 
+            {
                 s += "The monster deals " + damage + " damage to you.";
             }
             p.damagePlayer(damage);
@@ -170,7 +174,7 @@ public class Room implements Serializable
         } 
         else 
         {
-            System.out.println("Error! Monster already exists in this room!");
+            System.out.println("Error! Monster already exists in this room!" + x + " | " + y);
         }
     }
 
@@ -181,6 +185,14 @@ public class Room implements Serializable
             monster = null;
         }
         return monster;
+    }
+    
+    public void removeMonster()
+    {
+        if (monster != null)
+        {
+            monster = null;
+        }
     }
 
     public ArrayList<RoomObject> getRoomObjects() 

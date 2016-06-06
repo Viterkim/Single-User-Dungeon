@@ -39,7 +39,7 @@ public final class RoomController implements Serializable
     private final int dungeonHeight, dungeonWidth;
     private final int[] BUFFS;
     private final Random random;
-    private String bonusS;
+    String latestMove;
     
     public RoomController(int x, int y)
     {
@@ -79,7 +79,7 @@ public final class RoomController implements Serializable
         currentRoom = getRoom(0, 0);
         if (currentRoom.getMonster() != null) 
         {
-            currentRoom.getMonster().damageMonster(999);
+            currentRoom.removeMonster();
         }
         placeMandatoryObjects();
         placeMandatoryItems();
@@ -92,6 +92,10 @@ public final class RoomController implements Serializable
         //Adds an endgame chest somewhere (NOT in spawn)
         Room tempRoom = getRoom(rng.nextInt(dungeonWidth - 1) +1, rng.nextInt(dungeonHeight - 1) +1);
         tempRoom.addObject(new RoomObject("Endgame Chest", "overflowing with coolness!"));
+        if (tempRoom.getMonster() != null)
+        {
+            tempRoom.removeMonster();
+        }
         tempRoom.addMonster(new Monster("Pelo Den Stygge", "FINAL BOSS", 220, 220, 12));
         //Adds a merchant to the spawn room
         getRoom(0,0).addObject(new RoomObject("Merchant", "like a nice fella with a lot of goods (type \"wares\" to see his goods)"));
@@ -290,7 +294,7 @@ public final class RoomController implements Serializable
         return turnsUsed;
     }
     
-    public void nextTurn(MainWindow gui, boolean increment) 
+    public void nextTurn(MainWindow gui, boolean increment, String latestCommand) 
     {
         if (player.getCurrentHp() <= 0)
         {
@@ -318,25 +322,37 @@ public final class RoomController implements Serializable
                 }
             }
         }
-        player.increaseCurrentEnergy(2);
-        turnsUsed++;
+        String[] nonTurnWords = {"inventory", "current", "story"};
+        boolean shouldTurn = true;
+        for (String s : nonTurnWords) 
+        {
+            if (latestCommand.toLowerCase().equals(s))
+            {
+                shouldTurn = false;
+            }
+        }
+        if (shouldTurn)
+        {
+            player.increaseCurrentEnergy(2);
+            turnsUsed++;
+        }
         gui.print("Turn: " + turnsUsed, true);
     }
     
-    private String getBuffName(int buff) {
+    private String getBuffName(int buff) 
+    {
         String[] buffs = {"buff of greater strength", "buff of greater health", "buff of greater resistance"};
         return buffs[buff];
     } 
 
-    public String getBonusS() 
+    public String getLatestMove() 
     {
-        return bonusS;
+        return latestMove;
     }
 
-    public void setBonusS(String bonusS) 
+    public void setLatestMove(String latestMove) 
     {
-        this.bonusS = bonusS;
+        this.latestMove = latestMove;
     }
-    
     
 }
