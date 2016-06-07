@@ -322,7 +322,7 @@ public final class RoomController implements Serializable
                 }
             }
         }
-        String[] nonTurnWords = {"inventory", "current", "story"};
+        String[] nonTurnWords = {"inventory", "current", "story", "wares"};
         boolean shouldTurn = true;
         for (String s : nonTurnWords) 
         {

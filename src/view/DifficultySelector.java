@@ -1,19 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package view;
 
 import control.RoomController;
 import javax.swing.JOptionPane;
 import model.SaveLoadHandler;
 
-/**
- *
- * @author ViktorKim
- */
-public class DifficultySelector extends javax.swing.JFrame {
+public class DifficultySelector extends javax.swing.JFrame 
+{
 
 
     public DifficultySelector() 
