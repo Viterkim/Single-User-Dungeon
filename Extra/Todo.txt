@@ -1,9 +1,0 @@
-Regeneration
-
-
-JUnit
-Lorte grafer
-
-Forbedringer:
-Loot table (mere consistant værdier på våben og items)
-Map forbedringer (one way slopes, dead ends etc)
