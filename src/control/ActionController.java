@@ -7,6 +7,9 @@ import java.util.Random;
 import model.*;
 import view.MainWindow;
 
+/**
+ * This class is a controller class for which actions should be performed when a specified action is parsed as a parameter to the processInput function
+ */
 public class ActionController implements Serializable
 {
     final int NORMAL_ATTACK = 0;
@@ -26,6 +29,12 @@ public class ActionController implements Serializable
         this.rc = rc;
     }
     
+    /**
+     * Takes a string from the input that the user typed in the GUI, and acts accordingly.
+     * @param s The action to be performed.
+     * @return Will return the string the player should see in the GUI as a result of the typed action.
+     * Invalid actions will also return a string, this one contains why the action is invalid.
+     */
     public String processInput(String s)
     {
         // Used for the "use" command
@@ -159,6 +168,10 @@ public class ActionController implements Serializable
         }
     }
     
+    /**
+     * A command to move the player 1 square north
+     * @return A string containing if the action was successful, or why the action is invalid
+     */
     public String goNorth() 
     {
         Room current = rc.getCurrentRoom();
@@ -177,6 +190,11 @@ public class ActionController implements Serializable
         return "You cannot go north";
     }
     
+    
+    /**
+     * A command to move the player 1 square south
+     * @return A string containing if the action was successful, or why the action is invalid
+     */
     public String goSouth() 
     {
         Room current = rc.getCurrentRoom();
@@ -194,6 +212,10 @@ public class ActionController implements Serializable
         return "You cannot go south";
     }
     
+    /**
+     * A command to move the player 1 square west
+     * @return A string containing if the action was successful, or why the action is invalid
+     */
     public String goWest() 
     {
         Room current = rc.getCurrentRoom();
@@ -211,6 +233,10 @@ public class ActionController implements Serializable
         return "You cannot go west";
     }
     
+    /**
+     * A command to move the player 1 square east
+     * @return A string containing if the action was successful, or why the action is invalid
+     */
     public String goEast() 
     {
         Room current = rc.getCurrentRoom();
@@ -228,6 +254,10 @@ public class ActionController implements Serializable
         return "You cannot go east";
     }
     
+    /**
+     * A command to return the list of available commands with a small description beside each
+     * @return A string containing if the action was successful, or why the action is invalid
+     */
     public String help()
     {
         return "north/up    |   travels in the given direction" + System.lineSeparator()
@@ -249,6 +279,10 @@ public class ActionController implements Serializable
                 + "quit |   quits the game";
     }
     
+    /**
+     * A command to attack a monster if one is in the room
+     * @return A string containing if the action was successful, or why the action is invalid
+     */
     public String attack(int type) 
     {
         if (rc.getCurrentRoom().getMonster() == null)
@@ -308,6 +342,10 @@ public class ActionController implements Serializable
         return "You killed the " + m.getDescription();
     }
     
+    /**
+     * A command to pick up all items on the floor in the room which one currently stands in
+     * @return A string containing if the action was successful, or why the action is invalid
+     */
     public String pickup() 
     {
         String items = "";
@@ -326,6 +364,10 @@ public class ActionController implements Serializable
         return "You picked up " + items + " from the floor.";
     }
     
+    /**
+     * A command to use an item from the inventory, such as a potion ("use potion")
+     * @return A string containing if the action was successful, or why the action is invalid
+     */
     public String use(String itemName) 
     {
         ArrayList<Item> items = (ArrayList<Item>) rc.getPlayer().getInventory().clone();
@@ -339,6 +381,10 @@ public class ActionController implements Serializable
         return "You don't have the item \"" + itemName + "\" in your inventory.";
     }
     
+    /**
+     * A command to interact with an object, such as a chest (interact chest)
+     * @return A string containing if the action was successful, or why the action is invalid
+     */
     public String interact(String objectName) 
     {
         ArrayList<RoomObject> objects = rc.getCurrentRoom().getRoomObjects();
@@ -352,6 +398,10 @@ public class ActionController implements Serializable
         return "This object does not exist!";
     }
     
+    /**
+     * A command to display what one has in their inventory
+     * @return A string containing if the action was successful, or why the action is invalid
+     */
     public String inventory() 
     {
         String s = "Your inventory contains:" + System.lineSeparator();

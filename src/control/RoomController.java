@@ -15,6 +15,10 @@ import model.RoomObjectGenerator;
 import model.Weapon;
 import view.MainWindow;
 
+/**
+ * The class RoomController acts as the map as a whole, it contains all Rooms, informations about the player, and information about the dungeon.
+ * It is a mid-way between the ActionController and the rooms themselves.
+ */
 public final class RoomController implements Serializable
 {
     
@@ -54,6 +58,13 @@ public final class RoomController implements Serializable
         BUFFS = new int[3];
     }
     
+    /**
+     * Generates a random map with specified parameters
+     * @param width Width of the dungeon
+     * @param height Height of the Dungeon
+     * @param monsterChance Percentage chance that a monster spawns in any given room
+     * @param objectChance Percentage chance that an object spawns in any given room
+     */
     public void randomGenerateMap(int width, int height, int monsterChance, int objectChance) 
     {
         for (int x = 0; x < width; x++) 
@@ -86,6 +97,9 @@ public final class RoomController implements Serializable
         prepareMerchant();
     }
 
+    /**
+     * Used to place mandatory 
+     */
     public void placeMandatoryObjects()
     {
         Random rng = new Random();

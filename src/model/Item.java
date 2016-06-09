@@ -51,6 +51,11 @@ public class Item implements Serializable
         return goldValue;
     }
     
+    /**
+     * This will use an item from the player (p's) inventory, if an item is found with such a name
+     * @param p Player that the item should be used from.
+     * @return Returns the action (if it failed, then an error on why it failed, else what happened based on that action)
+     */
     public String use(Player p)
     {
         switch (name.toLowerCase())

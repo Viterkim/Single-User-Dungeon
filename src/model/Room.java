@@ -6,7 +6,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-
+/**
+ * The core class for the dungeon, this contains much of the info used in the game, such as the x and y coordinates of the room, if the room has a monster or item
+ * or object inside, and if so, which object/monster/item.
+ */
 public class Room implements Serializable
 {
     
@@ -40,6 +43,10 @@ public class Room implements Serializable
         return y;
     }
     
+    /**
+     * This genereates a string that is displayed in the text area of the game.
+     * This contains info such as if the room has a monster, if there's any items on the floor, and more.
+     */
     public String generateDescription(Player p, RoomController rc, String command)
     {
         if (command.equalsIgnoreCase("help") || command.equalsIgnoreCase("inventory")) {
@@ -54,6 +61,9 @@ public class Room implements Serializable
         return s;
     }
     
+    /**
+     * Returns a string based on if there is a monster present in the room
+     */
     private String generateMonsterDescription(RoomController rc, Player p, String command)
     {
         String s = "";
@@ -92,6 +102,9 @@ public class Room implements Serializable
         return s;
     }
     
+    /**
+     * Returns a string based on if there is an item in the room
+     */
     private String generateItemDescription()
     {
         String s = "";
@@ -112,6 +125,9 @@ public class Room implements Serializable
         return s;
     }
     
+    /**
+     * Generates random sentences for the different directions for the room
+     */
     private void fillDirectionalDescriptions()
     {
         String flavorAr[] = {"You see a hallway leading", "You see a passage going", "A door is located to the", "A set of stairs is available to the", "There's a small path leading", "A hole in the wall is located", "There's a hole in the ground you can climb through"};
@@ -122,6 +138,9 @@ public class Room implements Serializable
         }
     }
     
+    /**
+     * For each direction that has a valid path, it will display the direction and the randomized sentence for that direction
+     */
     private String generateGeneralDescription(RoomController rc)
     {
         String s = "";

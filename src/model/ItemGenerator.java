@@ -10,6 +10,10 @@ public class ItemGenerator
     private static final String[] DESCRIPTIONS = {"shiny", "dirty", "broken"};
     private static final int[] VALUE = {10, 20 , 25, 50, 200, 300};
     
+    /**
+     * Generates a random item from the above table values.
+     * @return A randomly generated item.
+     */
     public static Item GenerateRandomItem() 
     {
         Random random = new Random();

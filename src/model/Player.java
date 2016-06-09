@@ -5,6 +5,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
+/**
+ * The player class holds all important information for the player, such as stats, inventory, gold, etc.
+ */
 public final class Player implements Serializable
 {
     private String name;
@@ -33,6 +36,9 @@ public final class Player implements Serializable
         initInventory();
     }
     
+    /**
+     * Initializes the inventory of the player to start with 2 potions, and their bare fists as a starting weapon.
+     */
     private void initInventory() 
     {
         inventory.clear();
@@ -41,6 +47,9 @@ public final class Player implements Serializable
         inventory.add(new Item("Potion", "", 20));
     }
      
+    /**
+     * Levels up the player, giving him increased stats
+     */
     public void levelUp()
     {
         this.level++;
@@ -48,6 +57,9 @@ public final class Player implements Serializable
         this.currentHp = maxHp;
     }
     
+    /**
+     * Calls the end sequence, informing the player of their ending score
+     */
     public void doEndSequence()
     {
         int totalPoints = 0;
@@ -82,6 +94,9 @@ public final class Player implements Serializable
         System.exit(0);
     }
     
+    /**
+     * Used to set the players name
+     */
     public void setNewName()
     {
         String tempName = JOptionPane.showInputDialog(null, "What is your name?");
@@ -92,6 +107,10 @@ public final class Player implements Serializable
         this.name = tempName;
     }
     
+    /**
+     * 
+     * @return The intro story, introducing the player to the dungeon.
+     */
     public String getStory()
     {
         String story = "85 years ago in a small country called Russia, a small village was inhabited by 85 villagers and one of them was called " + name + "." + 
@@ -104,6 +123,11 @@ public final class Player implements Serializable
         return story;
     }
     
+    /**
+     * Checks if the player has a certain item with the specified name in their inventory.
+     * @param s The name of the item
+     * @return True: If player has the item in inventory, else false
+     */
     public boolean hasItem(String s)
     {
         for (Item i : inventory)
@@ -116,6 +140,11 @@ public final class Player implements Serializable
         return false;
     }
     
+    /**
+     * Gets an item by the specified string
+     * @param s The name of the item
+     * @return The item by name s, or null, if no item is found.
+     */
     public Item getItem(String s)
     {
         for (Item i : inventory)
@@ -167,6 +196,10 @@ public final class Player implements Serializable
         }
     }
 
+    /**
+     * Removes the first instance of an item with the same name as the parsed name in the parameter
+     * @param name The name of the item.
+     */
     public void removeFromInventory(String name)
     {
         for (Item i : inventory)
@@ -209,6 +242,10 @@ public final class Player implements Serializable
         inventory.add(item);
     }
     
+    /**
+     * Checks all available weapons, and will return the one with the highest damage
+     * @return The weapon with the most damage, null if no weapon is found.
+     */
     public Weapon getBestWeapon() 
     {
         Weapon bestWeapon = null;
