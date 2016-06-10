@@ -4,6 +4,9 @@ import control.RoomController;
 import java.awt.Point;
 import java.util.ArrayList;
 
+/**
+ * The Main gui used for the interaction between the user and the application. 
+ */
 public final class MainWindow extends javax.swing.JFrame 
 {
     public static RoomController map;
@@ -27,6 +30,11 @@ public final class MainWindow extends javax.swing.JFrame
         update();
     }
     
+    /**
+     * Prints to the game text area
+     * @param s the string which is printed
+     * @param append if the string is appended or not
+     */
     public void print(String s, boolean append)
     {
         if (!append)
@@ -36,11 +44,17 @@ public final class MainWindow extends javax.swing.JFrame
         jTextAreaMain.append(s + System.lineSeparator());
     }
     
+    /**
+     * Clears the gameplay text area of text
+     */
     private void clearConsole()
     {
         jTextAreaMain.setText("");
     }
     
+    /**
+     * Updates the gui elements including health and energy
+     */
     private void update() 
     {
         int maxHp = map.getPlayer().getMaxHp();
@@ -55,6 +69,10 @@ public final class MainWindow extends javax.swing.JFrame
         jProgressBarEnergy.setValue(currentEnergy);
     }
     
+    /**
+     * Sets the RoomController file in the class
+     * @param rc The RoomController which is passed around, ensuring that we aren't using different instances of the controller
+     */
     public static void setRoomController(RoomController rc)
     {
         MainWindow.map = rc;
@@ -237,6 +255,9 @@ public final class MainWindow extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Shows the help window to the user
+     */
     private void jButtonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHelpActionPerformed
         if (!jDialogHelp.isVisible())
         {
@@ -252,6 +273,9 @@ public final class MainWindow extends javax.swing.JFrame
         }
     }//GEN-LAST:event_jButtonHelpActionPerformed
 
+    /**
+     * Passes the text from the GUI to the controller, ensuring that gameplay happens
+     */
     private void jButtonDoActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDoActionActionPerformed
         String s = jTextFieldInput.getText();
         print(map.processInput(s), false);
@@ -269,11 +293,17 @@ public final class MainWindow extends javax.swing.JFrame
         update();
     }//GEN-LAST:event_jButtonDoActionActionPerformed
 
+    /**
+     * Calls the action button when pressing enter
+     */
     private void jTextFieldInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldInputActionPerformed
         // Calls the action button
         jButtonDoActionActionPerformed(evt);
     }//GEN-LAST:event_jTextFieldInputActionPerformed
 
+    /**
+     * Sorts the help gui window for the user
+     */
     private void jTextFieldSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSearchKeyTyped
         String line = jTextFieldSearch.getText().toLowerCase();
         String helpText = helpText();
@@ -294,6 +324,9 @@ public final class MainWindow extends javax.swing.JFrame
         jTextAreaHelp.setText(helpText);
     }//GEN-LAST:event_jTextFieldSearchKeyTyped
     
+    /**
+     * Returns a string of helpful text for the user
+     */
     public String helpText()
     {
         return "north/up    |   travels in the given direction" + System.lineSeparator()
