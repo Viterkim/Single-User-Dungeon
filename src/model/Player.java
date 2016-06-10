@@ -95,6 +95,14 @@ public final class Player implements Serializable
     }
     
     /**
+     * Used to set the players name to the parsed parameter name
+     */
+    public void setNewName(String name)
+    {
+        this.name = name;
+    }
+    
+    /**
      * Used to set the players name
      */
     public void setNewName()

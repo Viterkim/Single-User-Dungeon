@@ -10,7 +10,11 @@ public class WeaponGenerator
     private static final String[] DESCRIPTIONS = {"a shiny weapon", "a dirty weapon", "a factory new weapon"};
     private static final int[] VALUE = {5, 7, 10, 12, 14, 15, 17, 20, 25};
     private static final int[] DAMAGES = {5, 7, 10, 12, 14, 15, 17, 20};
-    
+     
+    /**
+     * Generates a random weapon from the above table values.
+     * @return A randomly generated weapon.
+     */
     public static Weapon GenerateRandomWeapon() 
     {
         Random random = new Random();

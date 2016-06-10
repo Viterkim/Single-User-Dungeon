@@ -3,6 +3,9 @@ package model;
 
 import java.io.Serializable;
 
+/**
+ * This class extends Item, and has the extra field damage
+ */
 public class Weapon extends Item implements Serializable
 {
     

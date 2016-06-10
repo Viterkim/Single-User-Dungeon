@@ -12,6 +12,10 @@ public class RoomObjectGenerator
     private static final List<String> objects = new ArrayList<>(Arrays.asList("Green Lamp", "Red Lamp", "Blue Lamp", "Normal Chest", "Giant Chest", "Stash Of Bones"));
     private static final String[] DESCRIPTIONS = {"glimmering", "dirty", "shiny", "old", "new"};
     
+    /**
+     * Generates a random object from the above table values.
+     * @return A randomly generated object.
+     */
     public static RoomObject GenerateRandomObject() 
     {
         if (objects.size() <= 0)

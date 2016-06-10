@@ -19,6 +19,11 @@ public class RoomObject implements Serializable
         this.description = description;
     }
     
+    /**
+     * This will try to interact with an object in the room, if the object is present.
+     * @param rc The RoomController, so it can access some of the buffs/current room
+     * @return Returns the action (if it failed, then an error on why it failed, else what happened based on that action)
+     */
     public String interact(RoomController rc)
     {
         Player p = rc.getPlayer();

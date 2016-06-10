@@ -9,15 +9,28 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-
+/**
+ * A class to save or load the RoomController from/to serializable data
+ */
 public class SaveLoadHandler 
 {
+    
+    /**
+     * Saves the RoomController to serializable data
+     * @param rc The RoomController
+     * @param playerName The player name
+     */
     public static void save(RoomController rc, String playerName)
     {
         playerName = playerName.toLowerCase();
         save(rc, new File("saves/" + playerName + ".txt"));
     }
     
+    /**
+     * Saves the RoomController to serializable data
+     * @param rc The RoomController
+     * @param playerName The player name
+     */
     private static void save(RoomController rc, File f)
     {
         try
@@ -40,6 +53,11 @@ public class SaveLoadHandler
         }
     }
     
+    /**
+     * Loads the RoomController from the specified player's name
+     * @param playerName The player name
+     * @return The loaded RoomController
+     */
     public static RoomController load(String playerName)
     {
         playerName = playerName.toLowerCase();
